@@ -1,0 +1,314 @@
+---
+title: "Project1_EDA_draft"
+author: "Erika Pham"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: hide
+    number_sections: false
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+```{r init, include = FALSE}
+# loading in libraries
+library(ezids)
+library(tidyverse)
+library(readr)
+library(ggplot2)
+library(stringr)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = F, message = F)
+options(scientific = T, digits = 3)
+```
+
+
+```{r, include = FALSE}
+# loading in dataset
+diabetes <- read.csv("diabetes_binary_5050split_health_indicators_BRFSS2015.csv")
+str(diabetes)
+
+# renaming some longer variables
+diabetes <- diabetes %>%
+    rename("diabetes"=Diabetes_binary)
+diabetes <- diabetes %>%
+  rename("heart_dis" = HeartDiseaseorAttack)
+diabetes <- diabetes %>%
+  rename("hvy_alc" = HvyAlcoholConsump)
+```
+
+
+
+```{r, include = FALSE}
+diabts1 <- subset(diabetes, diabetes == 1)
+diabts0 <- subset(diabetes, diabetes == 0)
+```
+### Bar charts for each distribution of health factors among people with diabetes
+**For high blood pressure**
+
+```{r}
+library(ggplot2)
+highbp1 <- ggplot(data = diabetes, aes(x = factor(HighBP), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
+      labs(title = "High blood pressure distribution", x = "have high blood pressure") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes")) +
+      scale_fill_manual(values=c("lightskyblue","#E69234"))
+    
+highbp1
+```
+
+**For high cholesterol**
+**1: has high BP, 0: does not have high BP**
+
+``` {r}
+highchol1 <- ggplot(data = diabetes, aes(x = factor(HighChol), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
+      labs(title = "High cholesterol level distribution", x = "have high cholesterol") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes")) +
+      scale_fill_brewer(palette="Set1")
+    
+highchol1
+
+```
+**For CholCheck (if the person has checked for cholesterol level within the past 5 years)**
+
+```{r}
+cholcheck1 <- ggplot(data = diabetes, aes(x = factor(CholCheck), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
+      labs(title = "Cholesterol-check within 5 years distribution", x = "checked") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes")) +
+      scale_fill_brewer(palette="Accent")
+    
+cholcheck1
+
+```
+
+**For BMI levels**
+
+```{r}
+bmi1 <- ggplot(data = diabetes, aes(x = BMI, fill=factor(diabetes))) +
+      geom_boxplot(color = "black")+
+      labs(title = "Distribution of BMI", x = "BMI") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5),
+            axis.text.y = element_blank(),
+            axis.ticks.y = element_blank())+
+      guides(fill = guide_legend(title = "Diabetes")) +
+      scale_fill_brewer(palette="Paired")
+bmi1
+```
+
+**For Smoker**
+```{r}
+smoker1 <- ggplot(data = diabetes, aes(x = factor(Smoker), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
+      labs(title = "Distribution of smokers", x = "smoking") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes")) +
+      scale_fill_brewer(palette="PuRd")
+    
+smoker1
+```
+
+**For Stroke**
+
+```{r}
+stroke1 <- ggplot(data = diabetes, aes(x = factor(Stroke), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
+      labs(title = "Stroke distribution", x = "have had a stroke") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes")) +
+      scale_fill_brewer(palette="YlGn")
+    
+stroke1
+```
+
+**For Heart Disease/Attack**
+
+```{r}
+heart_dis1 <- ggplot(data = diabetes, aes(x = factor(heart_dis), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
+      labs(title = "Heart disease/attack distribution", x = "have heart disease/attack") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes")) +
+      scale_fill_brewer(palette="Pastel1")
+    
+heart_dis1
+```
+
+**For PhysActivity (if they've had any physical activity the past 30 days)**
+
+```{r}
+phys1 <- ggplot(data = diabetes, aes(x = factor(PhysActivity), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
+      labs(title = "Physical activity distribution", x = "physical activity within 30 days") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes")) +
+      scale_fill_brewer(palette="Spectral")
+    
+phys1
+```
+**For Fruits (daily consumption of fruits)**
+
+```{r}
+fruits1 <- ggplot(data = diabetes, aes(x = factor(Fruits), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
+      labs(title = "Daily fruits consumption distribution", x = "had fruits") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes")) +
+      scale_fill_brewer(palette="PuOr")
+    
+fruits1
+```
+
+**For Veggies**
+
+```{r}
+veg1 <- ggplot(data = diabetes, aes(x = factor(Veggies), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
+      labs(title = "Daily consumption of vegetables", x = "had vegetables") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes")) +
+      scale_fill_brewer(palette="Purples")
+    
+veg1
+```
+
+**For HvyAlcohol (adult men >= 14 drinks/wk, adult women >= 7 drinks/wk)**
+```{r}
+library(ggplot2)
+hvyalc1 <- ggplot(data = diabetes, aes(x = factor(hvy_alc), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
+      labs(title = "High alcohol consumption distribution", x = "high-alcohol consumption") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes")) +
+      scale_fill_brewer(palette="Set3")
+    
+hvyalc1
+```
+
+
+**For AnyHealthcare**
+```{r}
+library(ggplot2)
+any_health1 <- ggplot(data = diabetes, aes(x = factor(AnyHealthcare), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
+      labs(title = "Health insurance availability", x = "have insurance") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes"))+
+      scale_fill_manual(values = c("mistyrose","skyblue"))
+any_health1
+```
+
+
+**For NoDocbcCost (needed to see a doctor but did not due to cost in the past 12 months)**
+
+```{r}
+library(ggplot2)
+nodoc1 <- ggplot(data = diabetes, aes(x = factor(NoDocbcCost), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
+      labs(title = "Refusal of doctor visits due to cost", x = "did not see doctor") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes"))+
+      scale_fill_manual(values = c("#E78321","#927999"))
+nodoc1
+```
+
+**For GenHlth**
+
+
+```{r}
+genhlth1 <- ggplot(data = diabetes, aes(x = GenHlth, fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
+      labs(title = "Distribution of self-rated general health level (1 to 5)", x = "general health level") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes"))+
+      scale_fill_manual(values = c("lightsalmon","paleturquoise"))
+genhlth1
+```
+
+**For MentHlth (no. days of poor mental health, 1-30 days)**
+
+```{r}
+mentalh1 <- ggplot(data = diabts1, aes(x = MentHlth)) +
+      geom_histogram(binwidth = 10, width = 0.5, color="black", fill="plum3")+
+      labs(title = "Distribution of poor mental health days among people with pre/diabetes", x = "no. of days") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))
+mentalh1
+```
+
+```{r}
+mentalh0 <- ggplot(data = diabts0, aes(x = MentHlth)) +
+      geom_histogram(binwidth = 10, width = 0.5, color="black", fill="lightpink")+
+      labs(title = "Distribution of poor mental health days \namong people without pre/diabetes", x = "no. of days") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))
+mentalh0
+```
+
+**For DiffWalk (if participant had serious difficulty walking/climbing stairs**
+
+```{r}
+diffwalk1 <- ggplot(data = diabetes, aes(x = factor(DiffWalk), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
+      labs(title = "Difficulty walking/climbing stairs distribution", x = "have difficulty walking") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes"))+
+      scale_fill_manual(values = c("gold3","brown2"))
+diffwalk1
+```
+
+**For Sex**
+
+```{r}
+sex1 <- ggplot(data = diabetes, aes(x = factor(Sex), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
+      labs(title = "Distribution of sex", x = "sex (0 = female, 1 = male)") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes"))+
+      scale_fill_manual(values = c("green4","yellow4"))
+sex1
+```
+
+**For Age**
+```{r}
+age1 <- ggplot(data = diabetes, aes(x = Age, fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
+      labs(title = "Distribution of age groups", x = "age groups") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes"))+
+      scale_fill_manual(values = c("pink3","lightsteelblue"))
+age1
+```
+
+**For Education**
+
+```{r}
+edu1 <- ggplot(data = diabetes, aes(x = Education, fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
+      labs(title = "Distribution of education levels", x = "education level") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes"))+
+      scale_fill_manual(values = c("cornflowerblue","darkorange"))
+edu1
+```
+
+**For Income**
+
+
+```{r}
+income1 <- ggplot(data = diabetes, aes(x = Income, fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
+      labs(title = "Distribution of income levels", x = "income level") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes"))+
+      scale_fill_manual(values = c("blueviolet","coral2"))
+income1
+```
+
