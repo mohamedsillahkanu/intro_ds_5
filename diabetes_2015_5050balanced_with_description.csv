@@ -1,0 +1,23 @@
+Variable,Description,Code
+Diabetes_binary,,"0 = no diabetes, 1 = pre/diabetes"
+HighBP,Have you ever been told (by a medical professional) that you have high blood pressure?,"0 = no high blood pressure, 1 = high blood pressure"
+HighChol,,"0 = no high cholesterol, 1 = high cholesterol"
+CholCheck,,"0 = no cholesterol check in 5 years, 1 = yes cholesterol check in 5 years"
+BMI,,Body Mass Index
+Smoker,Have you smoked at least 100 cigarettes (5 packs) in your entire life?,"0 = no, 1 = yes"
+Stroke,Ever been told you had a stroke,"0 = no, 1 = yes"
+HeartDiseaseorAttack,Coronary heart disease (CHD) or myocardial infarction,"0 = no, 1 = yes"
+PhysActivity,physical activity in the past 30 days - not including job,"0 = no, 1 = yes"
+Fruits,Consume fruit 1 or more times per day,"0 = no, 1 = yes"
+Veggies,Consume vegetables 1 or more times per day,"0 = no, 1 = yes"
+HvyAlcoholConsumption,"adult men >= 14 drinks/week, adult women >= 7 drinks/week","0 = no, 1 = yes"
+AnyHealthcare,"Have any kind of health care coverage, including health insurance, prepaid plans such as HMO, etc.","0 = no, 1 = yes"
+NoDocbcCost,Was there a time in the past 12 months when you needed to see a doctor but couldn't bc of cost?,"0 = no, 1 = yes"
+GenHlth,Would you say that in general your health is: scale 1- 5,"1 = excellent, 2 = very good, 3 = good, 4 = fair, 5 = poor"
+MentHlth,Days of poor mental health scale 1 - 30 days,
+PhysHlth,Physical illness or injury days in past 30 days scale 1-30 days,
+DiffWalk,Do you have serious difficulty walking or climbing stairs?,"0 = no, 1 = yes"
+Sex ,,"0 = female, 1 = male"
+Age,13-level age category,"1 = 18-24, 2 = 25-29,  3 = 30-34, 4 = 35-39, 5 = 40-44, 6 = 45-49, 7 = 50-54, 8 = 55-59, 9 = 60 - 64, 10 = 65-69, 11 = 70-74, 12 = 75-79, 13 = 80 and older"
+Education,Education level scale 1-6,"1 = never attended/only kindergarten, 2 = grades 1-8, 3 = grades 9 -11, 4 = grade 12 or GED (graduated HS), 5= college 1-3 yrs, 6 = college 4+ yrs (graduated college)"
+Income,Income scale from 1-8,"1 = <$10k, 2 = <$15k, 3 = <$20k, 4 = <$25k, 5 = <$35k, 6 = <$50k, 7 = <$75k, 8 = $75k+"
