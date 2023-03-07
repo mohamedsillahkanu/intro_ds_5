@@ -1,0 +1,117 @@
+---
+title: "Group project"
+author: "Mohamed Sillah Kanu"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: show
+    number_sections: false
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+```{r init, include=F}
+# The package "ezids" (EZ Intro to Data Science) includes some helper functions we developed for the course. 
+# Some of the frequently used functions are loadPkg(), xkabledply(), xkablesummary(), uzscale(), etc.
+# You will need to install it (once) from GitHub.
+# library(devtools)
+# devtools::install_github("physicsland/ezids")
+# Then load the package in your R session.
+library(ezids)
+```
+
+
+```{r setup, include=FALSE}
+# Some of common RMD options (and the defaults) are: 
+# include=T, eval=T, echo=T, results='hide'/'asis'/'markup',..., collapse=F, warning=T, message=T, error=T, cache=T, fig.width=6, fig.height=4, fig.dim=c(6,4) #inches, fig.align='left'/'center','right', 
+knitr::opts_chunk$set(warning = F, message = F)
+# Can globally set option for number display format.
+options(scientific=T, digits = 3) 
+# options(scipen=9, digits = 3) 
+```
+
+```{r}
+# 1. Do not provide answers/comments inside code blocks (like here) -- those are notes between coders/self and will be ignored for grading. 
+# 2. Make sure your knitr options are set to include all results/code to be graded in the final document.
+# 3. All charts/graphs/tables should have appropriate titles/labels/captions. 
+# 4. Compose your answers using inline R code instead of using the code-block output as much as you can. 
+# 5. Your grade is also determined by the style. Even if you answer everything correctly, but the .html does not look appealing, you will not get full credit. Pay attention to the details that we mentioned in class/homework and in previous sample .Rmd files. For example, how to use #, ##, ###, ..., bold face, italics, inline codes, tables, ..., {results = "asis"}, use of colors in plots/ggplots, and so forth.
+```
+
+
+
+```{r import data}
+projectfile <- read.csv("C:/Users/YUSUF/Desktop/projectfile.csv")
+str(projectfile)
+
+```
+
+
+#store as factor variables
+```{r}
+projectfile$Diabetes_binary <- as.factor(projectfile$Diabetes_binary)
+
+projectfile$HighBP <- as.factor(projectfile$HighBP)
+
+projectfile$HighChol <- as.factor(projectfile$HighChol)
+
+projectfile$CholCheck <- as.factor(projectfile$CholCheck)
+
+projectfile$Smoker <- as.factor(projectfile$Smoker)
+
+projectfile$HeartDiseaseorAttack <- as.factor(projectfile$HeartDiseaseorAttack)
+
+projectfile$PhysActivity <- as.factor(projectfile$PhysActivity)
+
+
+projectfile$Fruits <- as.factor(projectfile$Fruits)
+
+projectfile$Veggies <- as.factor(projectfile$Veggies)
+
+projectfile$HvyAlcoholConsump <- as.factor(projectfile$HvyAlcoholConsump)
+
+projectfile$DiffWalk <- as.factor(projectfile$DiffWalk)
+
+
+projectfile$Sex <- as.factor(projectfile$Sex)
+
+
+str(projectfile)
+```
+# chi-square test
+
+```{r}
+# pearson's chi squared test in r
+library(grid)
+library(vcd)
+data(projectfile)
+
+chisq.test(projectfile$Diabetes_binary, projectfile$HighBP)
+
+chisq.test(projectfile$Diabetes_binary, projectfile$HighChol)
+
+chisq.test(projectfile$Diabetes_binary, projectfile$CholCheck)
+
+chisq.test(projectfile$Diabetes_binary, projectfile$Smoker)
+
+chisq.test(projectfile$Diabetes_binary, projectfile$HeartDiseaseorAttack)
+
+chisq.test(projectfile$Diabetes_binary, projectfile$PhysActivity)
+
+chisq.test(projectfile$Diabetes_binary, projectfile$Fruits)
+
+chisq.test(projectfile$Diabetes_binary, projectfile$Veggies)
+
+chisq.test(projectfile$Diabetes_binary, projectfile$HvyAlcoholConsump)
+
+chisq.test(projectfile$Diabetes_binary, projectfile$DiffWalk)
+
+chisq.test(projectfile$Diabetes_binary, projectfile$Sex)
+
+
+```
+
