@@ -53,7 +53,7 @@ diabetes$DiffWalk <- as.factor(diabetes$DiffWalk)
 diabetes$Sex <- as.factor(diabetes$Sex)
 diabetes$Age <- as.factor(diabetes$Age)
 diabetes$Education <- as.factor(diabetes$Education)
-
+diabetes$Income <- as.factor(diabetes$Income)
 summary(diabetes)
 
 
