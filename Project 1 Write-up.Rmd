@@ -1,0 +1,92 @@
+---
+title: "DATS6101 Project 1"
+author: Group 5
+output:
+  html_document:
+    code_folding: hide
+    number_sections: false
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+date: "2023-03-20"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = F, message = F)
+options(scientific = T, digits = 3)
+```
+
+```{r init, include = FALSE}
+# loading in libraries
+library(ezids)
+library(tidyverse)
+library(readr)
+library(ggplot2)
+library(stringr)
+library(gridExtra)
+```
+
+```{r, include = FALSE}
+# loading in dataset
+diabetes <- read.csv("diabetes_binary_5050split_health_indicators_BRFSS2015.csv")
+str(diabetes)
+
+# renaming some longer variables
+diabetes <- diabetes %>%
+    rename("diabetes"=Diabetes_binary)
+diabetes <- diabetes %>%
+  rename("heart_dis" = HeartDiseaseorAttack)
+diabetes <- diabetes %>%
+  rename("hvy_alc" = HvyAlcoholConsump)
+
+# storing categorical variables as factor
+diabetes$diabetes <- as.factor(diabetes$diabetes)
+diabetes$HighBP <- as.factor(diabetes$HighBP)
+diabetes$HighChol <- as.factor(diabetes$HighChol)
+diabetes$CholCheck <- as.factor(diabetes$CholCheck)
+diabetes$Smoker <- as.factor(diabetes$Smoker)
+diabetes$heart_dis <- as.factor(diabetes$heart_dis)
+diabetes$PhysActivity <- as.factor(diabetes$PhysActivity)
+diabetes$Fruits <- as.factor(diabetes$Fruits)
+diabetes$Veggies <- as.factor(diabetes$Veggies)
+diabetes$hvy_alc <- as.factor(diabetes$hvy_alc)
+diabetes$DiffWalk <- as.factor(diabetes$DiffWalk)
+diabetes$Sex <- as.factor(diabetes$Sex)
+diabetes$AnyHealthcare <- as.factor(diabetes$AnyHealthcare)
+diabetes$Education <- as.factor(diabetes$Education)
+diabetes$Income <- as.factor(diabetes$Income)
+
+```
+
+```{r, include = FALSE}
+# colorblind color palettes
+
+# The palette with grey:
+cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+# The palette with black:
+cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+# To use for fills, add
+  #scale_fill_manual(values=cbPalette)
+
+# To use for line and point colors, add
+  #scale_colour_manual(values=cbPalette)
+```
+
+# Examination of 
+
+Abstract here
+
+#### 1. Background
+#### 2. Data
+#### 3. EDA
+
+```{r}
+
+```
+
+#### 4. Conclusion
