@@ -45,42 +45,42 @@ options(scientific=T, digits = 3)
 
 
 ```{r import data}
-projectfile <- read.csv("C:/Users/YUSUF/Desktop/projectfile.csv")
-str(projectfile)
+diabetes_data <- read.csv("C:/Users/YUSUF/Desktop/diabetes_data.csv")
+str(diabetes_data)
 
 ```
 
 
 #store as factor variables
 ```{r}
-projectfile$Diabetes_binary <- as.factor(projectfile$Diabetes_binary)
+diabetes_data$Diabetes_binary <- as.factor(diabetes_data$Diabetes_binary)
 
-projectfile$HighBP <- as.factor(projectfile$HighBP)
+diabetes_data$HighBP <- as.factor(diabetes_data$HighBP)
 
-projectfile$HighChol <- as.factor(projectfile$HighChol)
+diabetes_data$HighChol <- as.factor(diabetes_data$HighChol)
 
-projectfile$CholCheck <- as.factor(projectfile$CholCheck)
+diabetes_data$CholCheck <- as.factor(diabetes_data$CholCheck)
 
-projectfile$Smoker <- as.factor(projectfile$Smoker)
+diabetes_data$Smoker <- as.factor(diabetes_data$Smoker)
 
-projectfile$HeartDiseaseorAttack <- as.factor(projectfile$HeartDiseaseorAttack)
+diabetes_data$HeartDiseaseorAttack <- as.factor(diabetes_data$HeartDiseaseorAttack)
 
-projectfile$PhysActivity <- as.factor(projectfile$PhysActivity)
-
-
-projectfile$Fruits <- as.factor(projectfile$Fruits)
-
-projectfile$Veggies <- as.factor(projectfile$Veggies)
-
-projectfile$HvyAlcoholConsump <- as.factor(projectfile$HvyAlcoholConsump)
-
-projectfile$DiffWalk <- as.factor(projectfile$DiffWalk)
+diabetes_data$PhysActivity <- as.factor(diabetes_data$PhysActivity)
 
 
-projectfile$Sex <- as.factor(projectfile$Sex)
+diabetes_data$Fruits <- as.factor(diabetes_data$Fruits)
 
+diabetes_data$Veggies <- as.factor(diabetes_data$Veggies)
 
-str(projectfile)
+diabetes_data$HvyAlcoholConsump <- as.factor(diabetes_data$HvyAlcoholConsump)
+
+diabetes_data$DiffWalk <- as.factor(diabetes_data$DiffWalk)
+
+diabetes_data$Sex <- as.factor(diabetes_data$Sex)
+
+diabetes_data$AnyHealthcare <- as.factor(diabetes_data$AnyHealthcare)
+
+str(diabetes_data)
 ```
 # chi-square test
 
@@ -90,27 +90,40 @@ library(grid)
 library(vcd)
 data(projectfile)
 
-chisq.test(projectfile$Diabetes_binary, projectfile$HighBP)
+chisq.test(diabetes_data$Diabetes_binary, diabetes_data$HighBP)
 
-chisq.test(projectfile$Diabetes_binary, projectfile$HighChol)
+chisq.test(diabetes_data$Diabetes_binary, diabetes_data$HighChol)
 
-chisq.test(projectfile$Diabetes_binary, projectfile$CholCheck)
+chisq.test(diabetes_data$Diabetes_binary, diabetes_data$CholCheck)
 
-chisq.test(projectfile$Diabetes_binary, projectfile$Smoker)
+chisq.test(diabetes_data$Diabetes_binary, diabetes_data$Smoker)
 
-chisq.test(projectfile$Diabetes_binary, projectfile$HeartDiseaseorAttack)
+chisq.test(diabetes_data$Diabetes_binary, diabetes_data$HeartDiseaseorAttack)
 
-chisq.test(projectfile$Diabetes_binary, projectfile$PhysActivity)
+chisq.test(diabetes_data$Diabetes_binary, diabetes_data$PhysActivity)
 
-chisq.test(projectfile$Diabetes_binary, projectfile$Fruits)
+chisq.test(diabetes_data$Diabetes_binary, diabetes_data$Fruits)
 
-chisq.test(projectfile$Diabetes_binary, projectfile$Veggies)
+chisq.test(diabetes_data$Diabetes_binary, diabetes_data$Veggies)
 
-chisq.test(projectfile$Diabetes_binary, projectfile$HvyAlcoholConsump)
+chisq.test(diabetes_data$Diabetes_binary, diabetes_data$HvyAlcoholConsump)
 
-chisq.test(projectfile$Diabetes_binary, projectfile$DiffWalk)
+chisq.test(diabetes_data$Diabetes_binary, diabetes_data$DiffWalk)
 
-chisq.test(projectfile$Diabetes_binary, projectfile$Sex)
+chisq.test(diabetes_data$Diabetes_binary, diabetes_data$Sex)
+
+chisq.test(diabetes_data$Diabetes_binary, diabetes_data$AnyHealthcare)
+
+chisq.test(diabetes_data$Diabetes_binary, diabetes_data$NoDocbcCost)
+
+chisq.test(diabetes_data$Diabetes_binary, diabetes_data$GenHlth)
+
+chisq.test(diabetes_data$Diabetes_binary, diabetes_data$MentHlth)
+
+chisq.test(diabetes_data$Diabetes_binary, diabetes_data$Education)
+
+chisq.test(diabetes_data$Diabetes_binary, diabetes_data$Income)
+
 
 
 ```
