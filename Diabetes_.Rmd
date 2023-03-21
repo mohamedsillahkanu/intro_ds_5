@@ -26,6 +26,7 @@ summary(diabetes)
 names(diabetes)
 dim(diabetes)
 head(diabetes, n=10)
+tail(diabetes, n=10)
 colnames(diabetes)
 ```
 
