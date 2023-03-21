@@ -406,6 +406,23 @@ income1
 Again, as the data is mostly categorical, we want to run chi-square tests to check for correlations.
 
 ```{r}
+chisq.test(diabetes$diabetes, diabetes$HighBP)
+chisq.test(diabetes$diabetes, diabetes$HighChol)
+chisq.test(diabetes$diabetes, diabetes$CholCheck)
+chisq.test(diabetes$diabetes, diabetes$Smoker)
+chisq.test(diabetes$diabetes, diabetes$heart_dis)
+chisq.test(diabetes$diabetes, diabetes$PhysActivity)
+chisq.test(diabetes$diabetes, diabetes$Fruits)
+chisq.test(diabetes$diabetes, diabetes$Veggies)
+chisq.test(diabetes$diabetes, diabetes$hvy_alc)
+chisq.test(diabetes$diabetes, diabetes$DiffWalk)
+chisq.test(diabetes$diabetes, diabetes$Sex)
+chisq.test(diabetes$diabetes, diabetes$AnyHealthcare)
+chisq.test(diabetes$diabetes, diabetes$NoDocbcCost)
+chisq.test(diabetes$diabetes, diabetes$GenHlth)
+chisq.test(diabetes$diabetes, diabetes$MentHlth)
+chisq.test(diabetes$diabetes, diabetes$Education)
+chisq.test(diabetes$diabetes, diabetes$Income)
 ```
 
 #### 4. Conclusion
