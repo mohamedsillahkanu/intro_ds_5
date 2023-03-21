@@ -22,18 +22,19 @@ When you click the **Knit** button a document will be generated that includes bo
 getwd()
 setwd("/Users/srivarshini/Downloads/")
 diabetes<-read_csv('diabetes_binary_5050split_health_indicators_BRFSS2015.csv')
-summary(diabetes)
 names(diabetes)
 dim(diabetes)
 head(diabetes, n=10)
 tail(diabetes, n=10)
 colnames(diabetes)
+summary(diabetes)
+
 ```
 
          
 ```{r}
 
-summary(diabetes)
+
 diabetes$Diabetes_binary <- as.factor(diabetes$Diabetes_binary)
 diabetes$HighBP <- as.factor(diabetes$HighBP)
 diabetes$HighChol <- as.factor(diabetes$HighChol)
