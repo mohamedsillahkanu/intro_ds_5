@@ -84,15 +84,15 @@ cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2"
 
 Diabetes is one of the most common chronic diseases in the United States. According to the Centers for Disease Control and Prevention (CDC), 34.2 million Americans have diabetes and 88 million have pre-diabetes (2018).For Project 1, our group looked at a data set from [Kaggle](https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset?select=diabetes_012_health_indicators_BRFSS2015.csv) containing pre-diabetes & diabetes-related health-risks. We want to assess which risk factors were most associated with diabetes. Through exploratory data analysis (EDA), we had more insights into the data and some possibilities we could explore when modelling for project 2. 
 
-#### 1. Background
+### 1. Background
 
-*What is diabetes?* It is a common chronic condition that causes low insulin level in humans– that’s the hormone that helps us break down glucose(sugar) into energy. This cause diabetics to have high level of sugar in their blood. Diabetic patients develop pre-diabetes first, which is where you have high blood sugar level but not enough to be considered having diabetes. Many complications can result from diabetes, including heart disease, vision loss, kidney disease, limb amputation, etc.^[5] 
+*What is diabetes?* It is a common chronic condition that causes low insulin level in humans– that’s the hormone that helps us break down glucose(sugar) into energy. This cause diabetics to have high level of sugar in their blood. Diabetic patients develop pre-diabetes first, which is where you have high blood sugar level but not enough to be considered having diabetes. Many complications can result from diabetes, including heart disease, vision loss, kidney disease, limb amputation, etc.(5) 
 
-This disease affects millions of people. In 2018, the Center for Disease Control and Prevention (CDC) reported 34.2 million Americans have diabetes and 88 million have pre-diabetes^[1]. It is also the most expensive chronic condition in the United States, with $1 out of every $4 in health care costs spent on treating people with diabetes^[2]. The estimated total financial cost of diabetes is $327 billion dollars in 2017^[3].
+This disease affects millions of people. In 2018, the Center for Disease Control and Prevention (CDC) reported 34.2 million Americans have diabetes and 88 million have pre-diabetes(1). It is also the most expensive chronic condition in the United States, with $1 out of every $4 in health care costs spent on treating people with diabetes(2). The estimated total financial cost of diabetes is $327 billion dollars in 2017(3).
 
-Although there is no known cure for diabetes, many individuals can lessen its negative effects by adopting lifestyle changes such as decreasing weight, eating a healthy diet, exercising, and receiving medical care (pills, insulin injections, etc.). Predictive models for diabetes risk are significant tools for the general population and public health officials since early diagnosis can result in lifestyle changes and more successful treatment.^[2] ^[5]
+Although there is no known cure for diabetes, many individuals can lessen its negative effects by adopting lifestyle changes such as decreasing weight, eating a healthy diet, exercising, and receiving medical care (pills, insulin injections, etc.). Predictive models for diabetes risk are significant tools for the general population and public health officials since early diagnosis can result in lifestyle changes and more successful treatment.(2)(5)
 
-#### 2. SMART question & objective
+### 2. SMART question & objective
 
 **SMART question:** what risk factors that are strongly associated with the likelihood of developing diabetes in the United States?
 
@@ -100,11 +100,11 @@ For the purposes of project 1, we will be exploring the data set using explorato
 
 The expected outcome of this project is a better understanding of the relationship between various health indicators and diabetes. This exploration, along with further research from existing literature, could be very useful in informing future analysis, not just within the scope of this course but in general. 
 
-#### 3. Data
+### 3. Data
 
 **What do we know about this dataset?**
 
-Every year since 1984, the CDC conducts the Behavioral Risk Factor Surveillance System (BRFSS) - a health-related telephone survey collecting data on various health-related behaviors and risk factors. The CDC survey collects over 400,000 responses, with more than 300 questions; making it one of the largest conducted health surveys in the world.^[6]
+Every year since 1984, the CDC conducts the Behavioral Risk Factor Surveillance System (BRFSS) - a health-related telephone survey collecting data on various health-related behaviors and risk factors. The CDC survey collects over 400,000 responses, with more than 300 questions; making it one of the largest conducted health surveys in the world.(6)
 
 For the 2015 BRFSS survey, a total of 491,773 respondents were interviewed from all 50 states, the District of Columbia, and three US territories. The survey included questions on various health behaviors, including tobacco use, physical activity, nutrition, and chronic health conditions such as diabetes. The survey data was collected using random digit dialing (RDD) techniques, where telephone numbers were randomly generated and called to identify potential survey respondents. Respondents were then asked to answer a series of questions on their health behaviors and health status. 
 
@@ -124,37 +124,37 @@ For this data set in particular, since the data grouped diabetic and pre-diabeti
 
 For easier comparison, we have roughly grouped the features into *3 categories*:
 
-**I.Bio-demographical factors:**  
+**I. Bio-demographical factors:**  
 
-1.Sex:  0 indicates female and 1 represents male 
+1. Sex:  0 indicates female and 1 represents male 
 
-2.Age: it has been categorized into thirteen-level age 
+2. Age: it has been categorized into thirteen-level age 
 
-3. Categories. Level 1 is between ages 18-24, level 2 is 25-29,3      is 30-34, 4 is 35-39, 5 is 40-44, 6 is 45-49, 7 is 50-54, 8 is 55-59, 9 is 60 - 64, 10 is 65-69, 11 is 70-74, 12 is 75-79, 13 is 80 and older. 
+3. Categories. Level 1 is between ages 18-24, level 2 is 25-29,3 is 30-34, 4 is 35-39, 5 is 40-44, 6 is 45-49, 7 is 50-54, 8 is 55-59, 9 is 60 - 64, 10 is 65-69, 11 is 70-74, 12 is 75-79, 13 is 80 and older. 
 
 4. Education: The education level scale is between 1 to 6.  
 Level 1 representing never attended/only kindergarten., level 2 is studied grades 1 to 8. Level 3 is grades 9 to 11, Level 4 is studied grade 12 or GED (graduated High School), Level 5 is attended college for 1 to 3 years, and lastly level 6 is attended college for over 4 years or graduated college.  
 
-5.Income: Income scale is from 1 to 8; Level 1 is below annual income of $10,000 or less. Level 1 being $15,000 or less, 3 is $20,000 or below, 4 is $25,000 or below, 5 is $35,000 or below, 6 is $50,000 or below, level 7 is below or equal to $75,000. Lastly, level 8 is above $75,000. 
+5. Income: Income scale is from 1 to 8; Level 1 is below annual income of $10,000 or less. Level 1 being $15,000 or less, 3 is $20,000 or below, 4 is $25,000 or below, 5 is $35,000 or below, 6 is $50,000 or below, level 7 is below or equal to $75,000. Lastly, level 8 is above $75,000. 
 
 
-**II.Health Indicators:**  
+**II. Health Indicators:**  
 
-1.HighBP: High Blood Pressure where 0 represents no high blood pressure and 1 indicates they have blood pressure. 
+1. HighBP: High Blood Pressure where 0 represents no high blood pressure and 1 indicates they have blood pressure. 
 
-2.HighChol: High Cholesterol where 0 represents no high cholesterol and 1 indicates they have high cholesterol. 
+2. HighChol: High Cholesterol where 0 represents no high cholesterol and 1 indicates they have high cholesterol. 
 
-3.BMI: The survey participants’ Body Mass Index  
+3. BMI: The survey participants’ Body Mass Index  
 
 4. Stroke: Participants have been asked if they’ve ever had a stroke and based on their responses it has been divided into 0 and 1 representing no and yes respectively.  
 
-5.HeartDiseaseorAttack: Participants have been asked if they’ve ever had a history of heart attack or heart diseases and based on their responses it has been divided into 0 and 1 representing no and yes respectively.  
+5. HeartDiseaseorAttack: Participants have been asked if they’ve ever had a history of heart attack or heart diseases and based on their responses it has been divided into 0 and 1 representing no and yes respectively.  
 
-6.GenHlth: Responding to the question asked over telephone, “would you say that in general your health is on scale 1 to 5?”, participants responses have been recorded where 1 is ‘excellent’, 2 is ‘very good’, 3 is ‘good’, 4 is ‘fair’ and 5 is ‘poor’. 
+6. GenHlth: Responding to the question asked over telephone, “would you say that in general your health is on scale 1 to 5?”, participants responses have been recorded where 1 is ‘excellent’, 2 is ‘very good’, 3 is ‘good’, 4 is ‘fair’ and 5 is ‘poor’. 
 
-7.MentHlth: Days of poor mental health have been recorded between 1 to 30 days. 
+7. MentHlth: Days of poor mental health have been recorded between 1 to 30 days. 
 
-8.PhysHlth: Physical illness or injury days in the past 30 days based on scale 1 to 30 days.   
+8. PhysHlth: Physical illness or injury days in the past 30 days based on scale 1 to 30 days.   
 
  
 **III.Behavioral/lifestyle & other factors:**
@@ -175,7 +175,7 @@ Level 1 representing never attended/only kindergarten., level 2 is studied grade
 
 8. DiffWalk: In response to “Do you have serious difficulty walking or climbing stairs?”, responses have been recorded as 0 representing no and 1 for yes. 
 
-#### 4. Exploratory Data Analysis (EDA)
+### 4. Exploratory Data Analysis (EDA)
 
 **I. Summary Statistics:**
 
@@ -204,7 +204,7 @@ Again, since most of our features are categorical, running summary statistics wa
 
 **A.Bio-demographical Features:**
 
-**1.For Sex (0 = female, 1 = male):**
+**1. For Sex (0 = female, 1 = male):**
 
 More women than men are in this data. More women reported having pre-diabetes/diabetes than men. 
 
@@ -218,7 +218,7 @@ sex1 <- ggplot(data = diabetes, aes(x = factor(Sex), fill=factor(diabetes))) +
 sex1
 ```
 
-**2.For Age (separated into 13 age categories):**
+**2. For Age (separated into 13 age categories):**
 
 Older age groups have more diabetic participants than younger age groups; from 55 years onwards. 
 
@@ -232,7 +232,7 @@ age1 <- ggplot(data = diabetes, aes(x = Age, fill=factor(diabetes))) +
 age1
 ```
 
-**3.For Education (separated into 6 education levels):**
+**3. For Education (separated into 6 education levels):**
 
 At education levels 2 through 5 (meaning from grades 1 through 1-3 years of college), we see more participants with pre-diabetes/diabetes than without. At level 6 (meaning they graduated college), we see fewer participants with pre-diabetes/diabetes than without. 
 
@@ -246,7 +246,7 @@ edu1 <- ggplot(data = diabetes, aes(x = Education, fill=factor(diabetes))) +
 edu1
 ```
 
-**4.For Income (income levels from 1 to 8, 1 is <= $10k and 8 is $75k+):**
+**4. For Income (income levels from 1 to 8, 1 is <= $10k and 8 is $75k+):**
 
 At lower income levels 1 through 6, more people reported having pre-diabetes/diabetes than without. At income levels 7 and 8, fewer people had pre-diabetes/diabetes compared to people without. 
 
@@ -263,7 +263,7 @@ income1
 
 **B. Health indicators:**
 
-**1.For HighBP (high blood pressure or not):**
+**1. For HighBP (high blood pressure or not):**
 
 Among people who have high blood pressure, more people report to have prediabetes or diabetes than people who do not. 
 Within people without high blood pressure, fewer respondants have pre-diabetes/diabetes compare to participants who do not.
@@ -280,7 +280,7 @@ highbp1 <- ggplot(data = diabetes, aes(x = factor(HighBP), fill=factor(diabetes)
 highbp1
 ```
 
-**2.For HighChol (high cholesterol or not):**
+**2. For HighChol (high cholesterol or not):**
 
 Similarly, within participants with high cholesterol, there are more with pre-diabetes/diabetes than without. Within respondants without high cholesterol, there are fewer people with pre-diabetes/diabetes than without.
 
@@ -296,7 +296,7 @@ highchol1
 
 ```
 
-**3.For CholCheck (if the person has checked for cholesterol level within the past 5 years):**
+**3. For CholCheck (if the person has checked for cholesterol level within the past 5 years):**
 
 Most people have had their cholesterol level checked within the past 5 years. For those who have checked, more people reported having pre-diabetes/diabetes.
 
@@ -343,7 +343,7 @@ grid.arrange(bmi1, bmi0, nrow = 1, ncol = 2)
 ```
 
 
-**5.For Stroke:**
+**5. For Stroke:**
 
 Most survey participants did not report having had a stroke. Within those who did, more also reported having pre-diabetes/diabetes. 
 
@@ -358,7 +358,7 @@ stroke1 <- ggplot(data = diabetes, aes(x = factor(Stroke), fill=factor(diabetes)
 stroke1
 ```
 
-**6.For Heart Disease/Attack**
+**6. For Heart Disease/Attack**
 
 Within people reported having a heart disease or having had a heart attack, more people also reported having pre-diabetes/diabetes than without. 
 
@@ -374,7 +374,7 @@ heart_dis1
 ```
 
 
-**7.For GenHlth (rating general health level from 1 (excellent) through 5 (poor): **
+**7. For GenHlth (rating general health level from 1 (excellent) through 5 (poor): **
 
 People with pre-diabetes/diabetes generally rated their health lower than that of people without pre-diabetes/diabetes.
 
@@ -389,7 +389,7 @@ genhlth1 <- ggplot(data = diabetes, aes(x = GenHlth, fill=factor(diabetes))) +
 genhlth1
 ```
 
-**8.For MentHlth (number of days with poor mental health, from 1 to 30 days):**
+**8. For MentHlth (number of days with poor mental health, from 1 to 30 days):**
 
 A majority of participants reported not having any poor mental health days within the past 30 days. A higher number of people with pre-diabetes/diabetes reported having 30 days of bad mental health compared to people without pre-diabetes/diabetes.
 
@@ -407,7 +407,7 @@ mentalh0 <- ggplot(data = diabts0, aes(x = MentHlth)) +
 grid.arrange(mentalh1, mentalh0, nrow = 1, ncol = 2)
 ```
 
-**9.For PhysHlth (days with physical injuries, from 1 to 30 days):**
+**9. For PhysHlth (days with physical injuries, from 1 to 30 days):**
 
 Similarly, more participants with pre-diabetes/diabetes reported having 30 days of physical injury(ies) compared to respondents who did not have pre-diabetes/diabetes.
 
@@ -429,7 +429,7 @@ grid.arrange(physh1, physh0, nrow = 1, ncol = 2)
 
 **C. Behavioral/lifestyle & other features:** 
 
-**1.For Smoker:**
+**1. For Smoker:**
 
 Among respondents that smoked, more people also reported having pre-diabetes/diabetes than those without. Within people who do not smoke, fewer reported having pre-diabetes/diabetes than without.
 
@@ -445,7 +445,7 @@ smoker1
 ```
 
 
-**2.For PhysActivity (if they've had any physical activity outside of work the past 30 days)**
+**2. For PhysActivity (if they've had any physical activity outside of work the past 30 days)**
 
 For those who *did not have* any physical activity outside of their job, more people reported having pre-diabetes/diabetes than without. Within those who *did have* physical activity in the past 30 days, fewer reported having pre-diabetes/diabetes. 
 
@@ -460,7 +460,7 @@ phys1 <- ggplot(data = diabetes, aes(x = factor(PhysActivity), fill=factor(diabe
 phys1
 ```
 
-**3.For Fruits (daily consumption of fruits)**
+**3. For Fruits (daily consumption of fruits)**
 
 Among participants who *did not have* fruits in their daily diet, a higher number of people reported having pre-diabetes/diabetes compared to those who did not. Fewer people with pre-diabetes/diabetes have fruits daily in their diet compared to people who do not have pre-diabetes/diabetes.
 
@@ -475,7 +475,7 @@ fruits1 <- ggplot(data = diabetes, aes(x = factor(Fruits), fill=factor(diabetes)
 fruits1
 ```
 
-**4.For Veggies**
+**4. For Veggies**
 
 Within respondents who *did not have* vegetables daily, more participants reported having pre-diabetes/diabetes than without. Fewer people with pre-diabetes/diabetes have vegetables in their daily diet compared to people who did not have pre-diabetes/diabetes.
 
@@ -490,7 +490,7 @@ veg1 <- ggplot(data = diabetes, aes(x = factor(Veggies), fill=factor(diabetes)))
 veg1
 ```
 
-**5.For HvyAlcohol (adult men >= 14 drinks/week, adult women >= 7 drinks/week):**
+**5. For HvyAlcohol (adult men >= 14 drinks/week, adult women >= 7 drinks/week):**
 
 Most participants reported not having high alcohol consumption. Within those who *do* consume a lot of alcohol, fewer reported having pre-diabetes/diabetes than without. Among those who *do not* drink heavily, more people reported having pre-diabetes/diabetes.
 
@@ -507,7 +507,7 @@ hvyalc1
 ```
 
 
-**6.For AnyHealthcare (if the participant reported having any health insurance): **
+**6. For AnyHealthcare (if the participant reported having any health insurance): **
 
 Most participants had health insurance. The distribution is mostly equal between people who have pre-diabetes/diabetes and people who do not. Within people who *did not have* insurance, fewer had pre-diabetes/diabetes than without.
 
@@ -523,7 +523,7 @@ any_health1
 ```
 
 
-**7.For NoDocbcCost (needed to see a doctor but did not due to cost in the past 12 months):**
+**7. For NoDocbcCost (needed to see a doctor but did not due to cost in the past 12 months):**
 
 Among people who had to refuse a doctor visit due to the high cost, more reported having pre-diabetes/diabetes than without. 
 
@@ -540,7 +540,7 @@ nodoc1
 
 
 
-**8.For DiffWalk (if participant had serious difficulty walking/climbing stairs):**
+**8. For DiffWalk (if participant had serious difficulty walking/climbing stairs):**
 
 Among participants who had difficulty walking or climbing stairs, more reported having pre-diabetes/diabetes compared to those who do not. Within respondents who did not have mobility problems, fewer people had pre-diabetes/diabetes. 
 
@@ -555,70 +555,229 @@ diffwalk1
 ```
 
 
+**III. Chi-squared Tests:**
 
-Again, as the data is mostly categorical, we want to run chi-square tests to check for correlations.
+As the data is mostly categorical variables, we want to run chi-square tests to check for correlations. Non-categorical variables have been omitted.
 
-```{r}
-chisq.test(diabetes$diabetes, diabetes$HighBP)
-```
+**A. Bio-demographical Variables:**
 
-```{r}
-chisq.test(diabetes$diabetes, diabetes$HighChol)
-```
+**1. For Sex:**
 
-```{r}
-chisq.test(diabetes$diabetes, diabetes$CholCheck)
-```
-```{r}
-chisq.test(diabetes$diabetes, diabetes$Smoker)
-```
-```{r}
-chisq.test(diabetes$diabetes, diabetes$heart_dis)
-```
-```{r}
-chisq.test(diabetes$diabetes, diabetes$PhysActivity)
-```
-```{r}
-chisq.test(diabetes$diabetes, diabetes$Fruits)
-```
-```{r}
-chisq.test(diabetes$diabetes, diabetes$Veggies)
-```
-```{r}
-chisq.test(diabetes$diabetes, diabetes$hvy_alc)
-```
-```{r}
-chisq.test(diabetes$diabetes, diabetes$DiffWalk)
-```
-```{r}
+Null Hypothesis: The status of diabetes and sex are not related
+Alternative hypothesis: The status of diabetes and sex are related.
+
+```{r, comment = ""}
 chisq.test(diabetes$diabetes, diabetes$Sex)
 ```
-```{r}
-chisq.test(diabetes$diabetes, diabetes$AnyHealthcare)
-```
-```{r}
-chisq.test(diabetes$diabetes, diabetes$NoDocbcCost)
-```
-```{r}
-chisq.test(diabetes$diabetes, diabetes$GenHlth)
-```
-```{r}
-chisq.test(diabetes$diabetes, diabetes$MentHlth)
-```
-```{r}
+
+Since the p-value is less than 0.05, then we can reject the null hypothesis and accept the alternative.
+
+**2.For Education:**
+
+Null Hypothesis: The status of diabetes and education are not related
+Alternative hypothesis: The status of diabetes and education are related.
+
+```{r, comment = ""}
 chisq.test(diabetes$diabetes, diabetes$Education)
 ```
-```{r}
+
+Since the p-value is less than 0.05, then we can reject the null hypothesis and accept the alternative.
+
+**3. For Income:**
+
+Null Hypothesis: The status of diabetes and income are not related
+Alternative hypothesis: The status of diabetes and income are related.
+
+```{r, comment = ""}
 chisq.test(diabetes$diabetes, diabetes$Income)
 ```
 
-#### 4. Conclusion
+Since the p-value is less than 0.05, then we can reject the null hypothesis and accept the alternative.
 
-##### References
+**4. For Age:**
 
-1.Centers for Disease Control and Prevention (2020). *National Diabetes Statistics Report 2020. Estimates of diabetes and its burden in the United States.* 
+Null Hypothesis: The status of diabetes and age are not related
+Alternative hypothesis: The status of diabetes and age are related.
 
-2.Centers for Disease Control and Prevention. (2022, December 21). *Health and economic benefits of diabetes interventions. Centers for Disease Control and Prevention.* Retrieved March 22, 2023, from https://www.cdc.gov/chronicdisease/programs-impact/pop/diabetes.html 
+```{r, comment = ""}
+chisq.test(diabetes$diabetes, diabetes$Age)
+```
+Since the p-value is less than 0.05, then we can reject the null hypothesis and accept the alternative.
+
+**B. Health Indicators:**
+
+**1.For HighBP:**
+
+Null Hypothesis: The status of diabetes and  High Blood Pressure are not related
+
+Alternative hypothesis: The status of diabetes and High Blood Pressure are related.
+
+```{r, comment = ""}
+chisq.test(diabetes$diabetes, diabetes$HighBP)
+```
+Since the p-value is less than 0.05, then we can reject the null hypothesis and accept the alternative.
+
+**2. For HighChol:**
+
+Null Hypothesis: The status of diabetes and High Cholesterol are not related
+
+Alternative hypothesis: The status of diabetes and Cholesterol are related.
+
+```{r, comment = ""}
+chisq.test(diabetes$diabetes, diabetes$HighChol)
+```
+Since the p-value is less than 0.05, then we can reject the null hypothesis and accept the alternative.
+
+**3. For CholCheck:**
+
+Null Hypothesis: The status of diabetes and cholesterol check are not related
+
+Alternative hypothesis: The status of diabetes and cholesterol check are related.
+
+```{r, comment = ""}
+chisq.test(diabetes$diabetes, diabetes$CholCheck)
+```
+
+Since the p-value is less than 0.05, then we can reject the null hypothesis and accept the alternative.
+
+**4. For Stroke:**
+
+Null Hypothesis: The status of diabetes and having a stroke are not related
+
+Alternative hypothesis: The status of diabetes and having a stroke are related. 
+
+```{r, comment = ""}
+chisq.test(diabetes$diabetes, diabetes$Stroke)
+```
+Since the p-value is less than 0.05, then we can reject the null hypothesis and accept the alternative.
+
+**5. For Heart Disease/Attack:**
+
+Null Hypothesis: The status of diabetes and heart disease or heart attack are not related
+
+Alternative hypothesis: The status of diabetes and heart disease or heart attack are related.
+
+```{r, comment = ""}
+chisq.test(diabetes$diabetes, diabetes$heart_dis)
+```
+
+Since the p-value is less than 0.05, then we can reject the null hypothesis and accept the alternative.
+
+**6. For GenHlth:**
+
+Null Hypothesis: The status of diabetes and general health are not related
+
+Alternative hypothesis: The status of diabetes and  general health are related.
+
+```{r, comment = ""}
+chisq.test(diabetes$diabetes, diabetes$GenHlth)
+```
+
+Since the p-value is less than 0.05, then we can reject the null hypothesis and accept the alternative.
+
+**C. Behavioral/lifestyle & other factors:**
+
+**1. For Smoker:**
+
+Null Hypothesis: The status of diabetes and smoking are not related
+
+Alternative hypothesis: The status of diabetes and smoking are related.
+
+```{r, comment = ""}
+chisq.test(diabetes$diabetes, diabetes$Smoker)
+```
+
+Since the p-value is less than 0.05, then we can reject the null hypothesis and accept the alternative.
+
+**2. For PhysActivity:**
+
+```{r, comment = ""}
+chisq.test(diabetes$diabetes, diabetes$PhysActivity)
+```
+
+Since the p-value is less than 0.05, then we can reject the null hypothesis and accept the alternative.
+
+**3. For Fruits:**
+
+Null Hypothesis: The status of diabetes and regular fruits intake are not related
+
+Alternative hypothesis: The status of diabetes  and regular fruits intake are related.
+
+```{r, comment = ""}
+chisq.test(diabetes$diabetes, diabetes$Fruits)
+```
+Since the p-value is less than 0.05, then we can reject the null hypothesis and accept the alternative.
+
+**4. For Veggies:**
+
+Null Hypothesis: The status of diabetes and eating vegetables regularly are not related
+
+Alternative hypothesis: The status of diabetes and  eating vegetables regularly are related.
+
+```{r, comment = ""}
+chisq.test(diabetes$diabetes, diabetes$Veggies)
+```
+Since the p-value is less than 0.05, then we can reject the null hypothesis and accept the alternative.
+
+**5. For Heavy Alcohol consumption:**
+
+Null Hypothesis: The status of diabetes and high alcohol intake are not related
+
+Alternative hypothesis: The status of diabetes and  high alcohol intake are related.
+
+
+```{r, comment = ""}
+chisq.test(diabetes$diabetes, diabetes$hvy_alc)
+```
+Since the p-value is less than 0.05, then we can reject the null hypothesis and accept the alternative.
+
+**6. For DiffWalk:**
+
+Null Hypothesis: The status of diabetes and difficulty in walking are not related
+
+Alternative hypothesis: The status of diabetes and  difficulty in walking are related.
+
+
+```{r, comment = ""}
+chisq.test(diabetes$diabetes, diabetes$DiffWalk)
+```
+Since the p-value is less than 0.05, then we can reject the null hypothesis and accept the alternative.
+
+**7. For AnyHealthcare:**
+
+Null Hypothesis: The status of diabetes and having health insurance are not related
+
+Alternative hypothesis: The status of diabetes and having health insurance are related.
+
+
+```{r, comment = ""}
+chisq.test(diabetes$diabetes, diabetes$AnyHealthcare)
+```
+Since the p-value is less than 0.05, then we can reject the null hypothesis and accept the alternative.
+
+**8. For NoDocbcCost:**
+
+Null Hypothesis: The status of diabetes and not visiting doctor due to cost are not related
+
+Alternative hypothesis: The status of diabetes and not visiting doctor due to cost are related.
+
+
+```{r, comment = ""}
+chisq.test(diabetes$diabetes, diabetes$NoDocbcCost)
+```
+Since the p-value is less than 0.05, then we can reject the null hypothesis and accept the alternative.
+
+### 5. Conclusion
+
+We have a much more thorough understanding of the data set and some diabetes risk factors through this project. Some variables are particularly intriguing, such as how income and education levels are distributed among the participants. Socio-economic factors seem to have an interesting effect, and potential analysis of this in project 2 could give meaningful insights. Since the variables are categorical, logistic regression will be necessary. 
+
+
+<br>
+**References**
+
+1. Centers for Disease Control and Prevention (2020). *National Diabetes Statistics Report 2020. Estimates of diabetes and its burden in the United States.* 
+
+2. Centers for Disease Control and Prevention. (2022, December 21). *Health and economic benefits of diabetes interventions. Centers for Disease Control and Prevention.* Retrieved March 22, 2023, from https://www.cdc.gov/chronicdisease/programs-impact/pop/diabetes.html 
 
 3. American Diabetes Association | ADA. (n.d.). *The cost of diabetes.* Retrieved March 22, 2023, from https://diabetes.org/about-us/statistics/cost-diabetes 
 
@@ -626,4 +785,4 @@ chisq.test(diabetes$diabetes, diabetes$Income)
 
 5. Centers for Disease Control and Prevention. (2022, July 7). *What is diabetes?* Centers for Disease Control and Prevention. Retrieved March 22, 2023, from https://www.cdc.gov/diabetes/basics/diabetes.html 
 
-6.Centers for Disease Control and Prevention. (2014, May 16). *CDC - about BRFSS.* Centers for Disease Control and Prevention. Retrieved March 22, 2023, from https://www.cdc.gov/brfss/about/index.htm 
+6. Centers for Disease Control and Prevention. (2014, May 16). *CDC - about BRFSS.* Centers for Disease Control and Prevention. Retrieved March 22, 2023, from https://www.cdc.gov/brfss/about/index.htm 
