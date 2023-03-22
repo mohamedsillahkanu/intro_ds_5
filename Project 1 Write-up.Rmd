@@ -80,11 +80,18 @@ cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2"
   #scale_colour_manual(values=cbPalette)
 ```
 
-# Examination of 
+# Examination of Risk Factors Strongly Associated with the Likelihood of Developing Diabetes in the United States
 
-Abstract here
+**Summary**
+Diabetes is one of the most common chronic diseases in the United States. According to the Centers for Disease Control and Prevention (CDC), 34.2 million Americans have diabetes and 88 million have pre-diabetes (2018).For Project 1, our group looked at a data set from [Kaggle](https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset?select=diabetes_012_health_indicators_BRFSS2015.csv) containing pre-diabetes & diabetes-related health-risks. We want to assess which risk factors were most associated with diabetes. Through exploratory data analysis (EDA), we had more insights into the data and some possibilities we could explore when modelling for project 2. 
 
 #### 1. Background
+
+Diabetes is a common chronic condition that affects millions of people. In 2018, the Center for Disease Control and Prevention (CDC) reported 34.2 million Americans have diabetes and 88 million have pre-diabetes^[1]. It is also the most expensive chronic condition in the United States, with $1 out of every $4 in health care costs spent on treating people with diabetes^[2]. The estimated total financial cost of diabetes is $327 billion dollars in 2017^[3].
+
+*What is diabetes?* It is a health condition that causes low insulin level in humans– that’s the hormone that helps us break down glucose(sugar) into energy. This cause diabetics to have high level of sugar in their blood. Many complications can result from diabetes, including heart disease, vision loss, kidney disease, limb amputation, etc.^[5] 
+
+
 #### 2. Data
 #### 3. EDA
 
@@ -504,3 +511,15 @@ chisq.test(diabetes$diabetes, diabetes$Income)
 ```
 
 #### 4. Conclusion
+
+##### References
+
+1.Centers for Disease Control and Prevention (2020). *National Diabetes Statistics Report 2020. Estimates of diabetes and its burden in the United States.* 
+
+2.Centers for Disease Control and Prevention. (2022, December 21). *Health and economic benefits of diabetes interventions. Centers for Disease Control and Prevention.* Retrieved March 22, 2023, from https://www.cdc.gov/chronicdisease/programs-impact/pop/diabetes.html 
+
+3. American Diabetes Association | ADA. (n.d.). *The cost of diabetes.* Retrieved March 22, 2023, from https://diabetes.org/about-us/statistics/cost-diabetes 
+
+4. Teboul, A. (2021, November 8). *Diabetes health indicators dataset.* Kaggle. Retrieved March 22, 2023, from https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset?select=diabetes_012_health_indicators_BRFSS2015.csv 
+
+5. Centers for Disease Control and Prevention. (2022, July 7). *What is diabetes?* Centers for Disease Control and Prevention. Retrieved March 22, 2023, from https://www.cdc.gov/diabetes/basics/diabetes.html 
