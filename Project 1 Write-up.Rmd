@@ -90,7 +90,7 @@ Diabetes is one of the most common chronic diseases in the United States. Accord
 
 This disease affects millions of people. In 2018, the Center for Disease Control and Prevention (CDC) reported 34.2 million Americans have diabetes and 88 million have pre-diabetes^[1]. It is also the most expensive chronic condition in the United States, with $1 out of every $4 in health care costs spent on treating people with diabetes^[2]. The estimated total financial cost of diabetes is $327 billion dollars in 2017^[3].
 
-Although there is no known cure for diabetes, many individuals can lessen its negative effects by adopting lifestyle changes such as decreasing weight, eating a healthy diet, exercising, and receiving medical care (pills, insulin injections, etc.). Predictive models for diabetes risk are significant tools for the general population and public health officials since early diagnosis can result in lifestyle changes and more successful treatment.^[2]^[5]
+Although there is no known cure for diabetes, many individuals can lessen its negative effects by adopting lifestyle changes such as decreasing weight, eating a healthy diet, exercising, and receiving medical care (pills, insulin injections, etc.). Predictive models for diabetes risk are significant tools for the general population and public health officials since early diagnosis can result in lifestyle changes and more successful treatment.^[2] ^[5]
 
 #### 2. SMART question & objective
 
@@ -140,79 +140,44 @@ Level 1 representing never attended/only kindergarten., level 2 is studied grade
 
 **II.Health Indicators:**  
 
-  
+1.HighBP: High Blood Pressure where 0 represents no high blood pressure and 1 indicates they have blood pressure. 
 
-HighBP: High Blood Pressure where 0 represents no high blood pressure and 1 indicates they have blood pressure. 
+2.HighChol: High Cholesterol where 0 represents no high cholesterol and 1 indicates they have high cholesterol. 
 
- 
+3.BMI: The survey participants’ Body Mass Index  
 
-HighChol: High Cholesterol where 0 represents no high cholesterol and 1 indicates they have high cholesterol. 
+4. Stroke: Participants have been asked if they’ve ever had a stroke and based on their responses it has been divided into 0 and 1 representing no and yes respectively.  
 
- 
+5.HeartDiseaseorAttack: Participants have been asked if they’ve ever had a history of heart attack or heart diseases and based on their responses it has been divided into 0 and 1 representing no and yes respectively.  
 
-BMI: The survey participants’ Body Mass Index  
+6.GenHlth: Responding to the question asked over telephone, “would you say that in general your health is on scale 1 to 5?”, participants responses have been recorded where 1 is ‘excellent’, 2 is ‘very good’, 3 is ‘good’, 4 is ‘fair’ and 5 is ‘poor’. 
 
- 
+7.MentHlth: Days of poor mental health have been recorded between 1 to 30 days. 
 
-Stroke: Participants have been asked if they’ve ever had a stroke and based on their responses it has been divided into 0 and 1 representing no and yes respectively.  
-
- 
-
-HeartDiseaseorAttack: Participants have been asked if they’ve ever had a history of heart attack or heart diseases and based on their responses it has been divided into 0 and 1 representing no and yes respectively.  
+8.PhysHlth: Physical illness or injury days in the past 30 days based on scale 1 to 30 days.   
 
  
+**III.Behavioral/lifestyle & other factors:**
 
-GenHlth: Responding to the question asked over telephone, “would you say that in general your health is on scale 1 to 5?”, participants responses have been recorded where 1 is ‘excellent’, 2 is ‘very good’, 3 is ‘good’, 4 is ‘fair’ and 5 is ‘poor’. 
+1. Smoker: Responding to the question “Have you ever smoked at least 100 cigarettes i.e., five packs in your entire life?”, participants’ responses have been recorded as 0 that represents no and 1 for yes. 
 
- 
+2. PhysActivity: Participants’ physical activity has been taken into consideration in the past 30 days apart from their day job. Based on their responses 0 has been recorded as no and 1 for yes. 
 
-  
+3. Fruits: Consumes at least one or more fruits a day, 0 is no and 1 for yes. 
 
-MentHlth: Days of poor mental health have been recorded between 1 to 30 days. 
+4. Veggies: Consumes at least one or more vegetables a day, 0 is no and 1 for yes. 
 
- 
+5. HvyAlcoholConsumption: For any male consuming fourteen or more drinks per week was considered a heavy alcohol consumer and for adult females it is seven or more per week, 0 is no and 1 for yes. 
 
-PhysHlth: Physical illness or injury days in the past 30 days based on scale 1 to 30 days.   
+6. AnyHealthcare: In response to “Have any kind of health care coverage, including health insurance, prepaid plans such as HMO etc.”, 0 represents no and 1 for yes. 
 
- 
+7. NoDocbcCost: When asked if the participants if there was ever a time, they needed to visit a doctor in the past 12 moths but couldn’t because of the cost, their responses are recorded as 0 which is a no and 1 for a yes.  
 
-Behavioral/lifestyle & other factors: 
+8. DiffWalk: In response to “Do you have serious difficulty walking or climbing stairs?”, responses have been recorded as 0 representing no and 1 for yes. 
 
-                
+#### 4. Exploratory Data Analysis (EDA)
 
-Smoker: Responding to the question “Have you ever smoked at least 100 cigarettes i.e., five packs in your entire life?”, participants’ responses have been recorded as 0 that represents no and 1 for yes. 
-
- 
-
-PhysActivity: Participants’ physical activity has been taken into consideration in the past 30 days apart from their day job. Based on their responses 0 has been recorded as no and 1 for yes. 
-
- 
-
-Fruits: Consumes at least one or more fruits a day, 0 is no and 1 for yes. 
-
- 
-
-Veggies: Consumes at least one or more vegetables a day, 0 is no and 1 for yes. 
-
- 
-
-HvyAlcoholConsumption: For any male consuming fourteen or more drinks per week was considered a heavy alcohol consumer and for adult females it is seven or more per week, 0 is no and 1 for yes. 
-
- 
-
- 
-
-AnyHealthcare: In response to “Have any kind of health care coverage, including health insurance, prepaid plans such as HMO etc.”, 0 represents no and 1 for yes. 
-
- 
-
-NoDocbcCost: When asked if the participants if there was ever a time, they needed to visit a doctor in the past 12 moths but couldn’t because of the cost, their responses are recorded as 0 which is a no and 1 for a yes.  
-
- 
-
-DiffWalk: In response to “Do you have serious difficulty walking or climbing stairs?”, responses have been recorded as 0 representing no and 1 for yes. 
-
-#### 4. EDA
+**I. Summary Statistics:**
 
 ```{r, include = FALSE}
 # subseting the data between people who have pre/diabetes and people who do not
@@ -225,11 +190,80 @@ diabts0 <- subset(diabetes, diabetes == 0)
 ```{r, comment = ""}
 summary(diabetes)
 ```
-Since most of our features are categorical, running summary statistics will not be very helpful in seeing what is going on. We decided that graphs and plots, particularly bar graphs and histograms are much more effective in portraying what the data looks like and what are the potential things we could look at. 
+The summary statistics being displayed are the counts of individuals falling into each category, for each variable. For example, for the "Diabetes_binary" variable, there are 35,346 individuals in category "0" and 35,346 individuals in category "1". 
 
-**Graphs for each variable/feature**
+After running summary () it displays us the health factors such as diabetes, high blood pressure, high cholesterol, smoking, etc. for a group of individuals and is presented in the form of minimum, maximum, mean, median, and quartile values for each of them the minimum and maximum values for diabetes are 0 and 1 respectively, indicating that the data is binary in nature (either the individual has diabetes or does not have it).  
 
-**For high blood pressure**
+Notably, the mean value for BMI is 29.9, which is in the overweight category. The data also includes information on socio-economic factors such as education and income. 
+
+Since most of the variables are categorical, we’ve disregarded mean, median, Standard Deviation etc., 
+
+Again, since most of our features are categorical, running summary statistics was not very helpful in seeing what is going on. We decided that graphs and plots, particularly bar graphs and histograms are much more effective in portraying what the data looks like and what are the potential things we could look at. 
+
+**II. Graphs for each variable/feature**
+
+**A.Bio-demographical Features:**
+
+**1.For Sex (0 = female, 1 = male):**
+
+More women than men are in this data. More women reported having pre-diabetes/diabetes than men. 
+
+```{r}
+sex1 <- ggplot(data = diabetes, aes(x = factor(Sex), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
+      labs(title = "Distribution of sex", x = "sex (0 = female, 1 = male)") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes"))+
+      scale_fill_manual(values=cbPalette)
+sex1
+```
+
+**2.For Age (separated into 13 age categories):**
+
+Older age groups have more diabetic participants than younger age groups; from 55 years onwards. 
+
+```{r}
+age1 <- ggplot(data = diabetes, aes(x = Age, fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
+      labs(title = "Distribution of age groups", x = "age groups") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes"))+
+      scale_fill_manual(values=cbPalette)
+age1
+```
+
+**3.For Education (separated into 6 education levels):**
+
+At education levels 2 through 5 (meaning from grades 1 through 1-3 years of college), we see more participants with pre-diabetes/diabetes than without. At level 6 (meaning they graduated college), we see fewer participants with pre-diabetes/diabetes than without. 
+
+```{r}
+edu1 <- ggplot(data = diabetes, aes(x = Education, fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
+      labs(title = "Distribution of education levels", x = "education level") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes"))+
+      scale_fill_manual(values=cbPalette)
+edu1
+```
+
+**4.For Income (income levels from 1 to 8, 1 is <= $10k and 8 is $75k+):**
+
+At lower income levels 1 through 6, more people reported having pre-diabetes/diabetes than without. At income levels 7 and 8, fewer people had pre-diabetes/diabetes compared to people without. 
+
+
+```{r}
+income1 <- ggplot(data = diabetes, aes(x = Income, fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
+      labs(title = "Distribution of income levels", x = "income level") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes"))+
+      scale_fill_manual(values=cbPalette)
+income1
+```
+
+**B. Health indicators:**
+
+**1.For HighBP (high blood pressure or not):**
 
 Among people who have high blood pressure, more people report to have prediabetes or diabetes than people who do not. 
 Within people without high blood pressure, fewer respondants have pre-diabetes/diabetes compare to participants who do not.
@@ -246,7 +280,7 @@ highbp1 <- ggplot(data = diabetes, aes(x = factor(HighBP), fill=factor(diabetes)
 highbp1
 ```
 
-**For high cholesterol**
+**2.For HighChol (high cholesterol or not):**
 
 Similarly, within participants with high cholesterol, there are more with pre-diabetes/diabetes than without. Within respondants without high cholesterol, there are fewer people with pre-diabetes/diabetes than without.
 
@@ -262,7 +296,7 @@ highchol1
 
 ```
 
-**For CholCheck (if the person has checked for cholesterol level within the past 5 years)**
+**3.For CholCheck (if the person has checked for cholesterol level within the past 5 years):**
 
 Most people have had their cholesterol level checked within the past 5 years. For those who have checked, more people reported having pre-diabetes/diabetes.
 
@@ -278,7 +312,7 @@ cholcheck1
 
 ```
 
-**For BMI levels:**
+**4. For BMI levels:**
 
 As we can see on both the box plot and the histograms, there is a good number of people who have BMI of 30 and above within people with pre-diabetes/diabetes and without. Participants with pre-diabetes/diabetes have higher BMI overall. Just as a note, a BMI of 25-29.9 is considered overweight, and 30 and above is considered obese. 
 
@@ -309,22 +343,7 @@ grid.arrange(bmi1, bmi0, nrow = 1, ncol = 2)
 ```
 
 
-**For Smoker:**
-
-Among respondents that smoked, more people also reported having pre-diabetes/diabetes than those without. Within people who do not smoke, fewer reported having pre-diabetes/diabetes than without.
-
-```{r}
-smoker1 <- ggplot(data = diabetes, aes(x = factor(Smoker), fill=factor(diabetes))) +
-      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
-      labs(title = "Distribution of smokers", x = "smoking (0=no, 1=yes)") +
-      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
-      guides(fill = guide_legend(title = "Diabetes")) +
-      scale_fill_manual(values=cbPalette)
-    
-smoker1
-```
-
-**For Stroke:**
+**5.For Stroke:**
 
 Most survey participants did not report having had a stroke. Within those who did, more also reported having pre-diabetes/diabetes. 
 
@@ -339,7 +358,7 @@ stroke1 <- ggplot(data = diabetes, aes(x = factor(Stroke), fill=factor(diabetes)
 stroke1
 ```
 
-**For Heart Disease/Attack**
+**6.For Heart Disease/Attack**
 
 Within people reported having a heart disease or having had a heart attack, more people also reported having pre-diabetes/diabetes than without. 
 
@@ -354,100 +373,8 @@ heart_dis1 <- ggplot(data = diabetes, aes(x = factor(heart_dis), fill=factor(dia
 heart_dis1
 ```
 
-**For PhysActivity (if they've had any physical activity outside of work the past 30 days)**
 
-For those who *did not have* any physical activity outside of their job, more people reported having pre-diabetes/diabetes than without. Within those who *did have* physical activity in the past 30 days, fewer reported having pre-diabetes/diabetes. 
-
-```{r}
-phys1 <- ggplot(data = diabetes, aes(x = factor(PhysActivity), fill=factor(diabetes))) +
-      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
-      labs(title = "Physical activity distribution", x = "physical activity within 30 days (0=no, 1=yes)") +
-      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
-      guides(fill = guide_legend(title = "Diabetes")) +
-      scale_fill_manual(values=cbPalette)
-    
-phys1
-```
-
-**For Fruits (daily consumption of fruits)**
-
-Among participants who *did not have* fruits in their daily diet, a higher number of people reported having pre-diabetes/diabetes compared to those who did not. Fewer people with pre-diabetes/diabetes have fruits daily in their diet compared to people who do not have pre-diabetes/diabetes.
-
-```{r}
-fruits1 <- ggplot(data = diabetes, aes(x = factor(Fruits), fill=factor(diabetes))) +
-      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
-      labs(title = "Daily fruits consumption distribution", x = "had fruits (0=no, 1=yes)") +
-      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
-      guides(fill = guide_legend(title = "Diabetes")) +
-      scale_fill_manual(values=cbPalette)
-    
-fruits1
-```
-
-**For Veggies**
-
-Within respondents who *did not have* vegetables daily, more participants reported having pre-diabetes/diabetes than without. Fewer people with pre-diabetes/diabetes have vegetables in their daily diet compared to people who did not have pre-diabetes/diabetes.
-
-```{r}
-veg1 <- ggplot(data = diabetes, aes(x = factor(Veggies), fill=factor(diabetes))) +
-      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
-      labs(title = "Daily consumption of vegetables", x = "had vegetables (0=no, 1=yes)") +
-      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
-      guides(fill = guide_legend(title = "Diabetes")) +
-      scale_fill_manual(values=cbPalette)
-    
-veg1
-```
-
-**For HvyAlcohol (adult men >= 14 drinks/week, adult women >= 7 drinks/week):**
-
-Most participants reported not having high alcohol consumption. Within those who *do* consume a lot of alcohol, fewer reported having pre-diabetes/diabetes than without. Among those who *do not* drink heavily, more people reported having pre-diabetes/diabetes.
-
-```{r}
-library(ggplot2)
-hvyalc1 <- ggplot(data = diabetes, aes(x = factor(hvy_alc), fill=factor(diabetes))) +
-      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
-      labs(title = "High alcohol consumption distribution", x = "high-alcohol consumption (0=no, 1=yes)") +
-      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
-      guides(fill = guide_legend(title = "Diabetes")) +
-      scale_fill_manual(values=cbPalette)
-    
-hvyalc1
-```
-
-
-**For AnyHealthcare (if the participant reported having any health insurance): **
-
-Most participants had health insurance. The distribution is mostly equal between people who have pre-diabetes/diabetes and people who do not. Within people who *did not have* insurance, fewer had pre-diabetes/diabetes than without.
-
-```{r}
-library(ggplot2)
-any_health1 <- ggplot(data = diabetes, aes(x = factor(AnyHealthcare), fill=factor(diabetes))) +
-      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
-      labs(title = "Health insurance availability", x = "have insurance (0=no, 1=yes)") +
-      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
-      guides(fill = guide_legend(title = "Diabetes"))+
-      scale_fill_manual(values=cbPalette)
-any_health1
-```
-
-
-**For NoDocbcCost (needed to see a doctor but did not due to cost in the past 12 months):**
-
-Among people who had to refuse a doctor visit due to the high cost, more reported having pre-diabetes/diabetes than without. 
-
-```{r}
-library(ggplot2)
-nodoc1 <- ggplot(data = diabetes, aes(x = factor(NoDocbcCost), fill=factor(diabetes))) +
-      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
-      labs(title = "Refusal of doctor visits due to cost", x = "visited doctor (0=yes, 1=no)") +
-      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
-      guides(fill = guide_legend(title = "Diabetes"))+
-      scale_fill_manual(values=cbPalette)
-nodoc1
-```
-
-**For GenHlth (rating general health level from 1 (excellent) through 5 (poor): **
+**7.For GenHlth (rating general health level from 1 (excellent) through 5 (poor): **
 
 People with pre-diabetes/diabetes generally rated their health lower than that of people without pre-diabetes/diabetes.
 
@@ -462,7 +389,7 @@ genhlth1 <- ggplot(data = diabetes, aes(x = GenHlth, fill=factor(diabetes))) +
 genhlth1
 ```
 
-**For MentHlth (number of days with poor mental health, from 1 to 30 days):**
+**8.For MentHlth (number of days with poor mental health, from 1 to 30 days):**
 
 A majority of participants reported not having any poor mental health days within the past 30 days. A higher number of people with pre-diabetes/diabetes reported having 30 days of bad mental health compared to people without pre-diabetes/diabetes.
 
@@ -471,18 +398,16 @@ mentalh1 <- ggplot(data = diabts1, aes(x = MentHlth)) +
       geom_histogram(width = 0.5, color="black", fill="lightsteelblue")+
       labs(title = "Distribution of poor mental health days \namong people with pre/diabetes", x = "no. of days") +
       theme(plot.title = element_text(size = 10, face = "bold", hjust = 0.5))
-mentalh1
 
 mentalh0 <- ggplot(data = diabts0, aes(x = MentHlth)) +
       geom_histogram(width = 0.5, color="black", fill="lightsteelblue")+
       labs(title = "Distribution of poor mental health days \namong people without pre/diabetes", x = "no. of days") +
       theme(plot.title = element_text(size = 10, face = "bold", hjust = 0.5))
-mentalh0
 
 grid.arrange(mentalh1, mentalh0, nrow = 1, ncol = 2)
 ```
 
-**For PhysHlth (days with physical injuries, from 1 to 30 days):**
+**9.For PhysHlth (days with physical injuries, from 1 to 30 days):**
 
 Similarly, more participants with pre-diabetes/diabetes reported having 30 days of physical injury(ies) compared to respondents who did not have pre-diabetes/diabetes.
 
@@ -502,7 +427,120 @@ physh0 <- ggplot(data = diabts0, aes(x = PhysHlth)) +
 grid.arrange(physh1, physh0, nrow = 1, ncol = 2)
 ```
 
-**For DiffWalk (if participant had serious difficulty walking/climbing stairs):**
+**C. Behavioral/lifestyle & other features:** 
+
+**1.For Smoker:**
+
+Among respondents that smoked, more people also reported having pre-diabetes/diabetes than those without. Within people who do not smoke, fewer reported having pre-diabetes/diabetes than without.
+
+```{r}
+smoker1 <- ggplot(data = diabetes, aes(x = factor(Smoker), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
+      labs(title = "Distribution of smokers", x = "smoking (0=no, 1=yes)") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes")) +
+      scale_fill_manual(values=cbPalette)
+    
+smoker1
+```
+
+
+**2.For PhysActivity (if they've had any physical activity outside of work the past 30 days)**
+
+For those who *did not have* any physical activity outside of their job, more people reported having pre-diabetes/diabetes than without. Within those who *did have* physical activity in the past 30 days, fewer reported having pre-diabetes/diabetes. 
+
+```{r}
+phys1 <- ggplot(data = diabetes, aes(x = factor(PhysActivity), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
+      labs(title = "Physical activity distribution", x = "physical activity within 30 days (0=no, 1=yes)") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes")) +
+      scale_fill_manual(values=cbPalette)
+    
+phys1
+```
+
+**3.For Fruits (daily consumption of fruits)**
+
+Among participants who *did not have* fruits in their daily diet, a higher number of people reported having pre-diabetes/diabetes compared to those who did not. Fewer people with pre-diabetes/diabetes have fruits daily in their diet compared to people who do not have pre-diabetes/diabetes.
+
+```{r}
+fruits1 <- ggplot(data = diabetes, aes(x = factor(Fruits), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
+      labs(title = "Daily fruits consumption distribution", x = "had fruits (0=no, 1=yes)") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes")) +
+      scale_fill_manual(values=cbPalette)
+    
+fruits1
+```
+
+**4.For Veggies**
+
+Within respondents who *did not have* vegetables daily, more participants reported having pre-diabetes/diabetes than without. Fewer people with pre-diabetes/diabetes have vegetables in their daily diet compared to people who did not have pre-diabetes/diabetes.
+
+```{r}
+veg1 <- ggplot(data = diabetes, aes(x = factor(Veggies), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
+      labs(title = "Daily consumption of vegetables", x = "had vegetables (0=no, 1=yes)") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes")) +
+      scale_fill_manual(values=cbPalette)
+    
+veg1
+```
+
+**5.For HvyAlcohol (adult men >= 14 drinks/week, adult women >= 7 drinks/week):**
+
+Most participants reported not having high alcohol consumption. Within those who *do* consume a lot of alcohol, fewer reported having pre-diabetes/diabetes than without. Among those who *do not* drink heavily, more people reported having pre-diabetes/diabetes.
+
+```{r}
+library(ggplot2)
+hvyalc1 <- ggplot(data = diabetes, aes(x = factor(hvy_alc), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
+      labs(title = "High alcohol consumption distribution", x = "high-alcohol consumption (0=no, 1=yes)") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes")) +
+      scale_fill_manual(values=cbPalette)
+    
+hvyalc1
+```
+
+
+**6.For AnyHealthcare (if the participant reported having any health insurance): **
+
+Most participants had health insurance. The distribution is mostly equal between people who have pre-diabetes/diabetes and people who do not. Within people who *did not have* insurance, fewer had pre-diabetes/diabetes than without.
+
+```{r}
+library(ggplot2)
+any_health1 <- ggplot(data = diabetes, aes(x = factor(AnyHealthcare), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
+      labs(title = "Health insurance availability", x = "have insurance (0=no, 1=yes)") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes"))+
+      scale_fill_manual(values=cbPalette)
+any_health1
+```
+
+
+**7.For NoDocbcCost (needed to see a doctor but did not due to cost in the past 12 months):**
+
+Among people who had to refuse a doctor visit due to the high cost, more reported having pre-diabetes/diabetes than without. 
+
+```{r}
+library(ggplot2)
+nodoc1 <- ggplot(data = diabetes, aes(x = factor(NoDocbcCost), fill=factor(diabetes))) +
+      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
+      labs(title = "Refusal of doctor visits due to cost", x = "visited doctor (0=yes, 1=no)") +
+      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
+      guides(fill = guide_legend(title = "Diabetes"))+
+      scale_fill_manual(values=cbPalette)
+nodoc1
+```
+
+
+
+**8.For DiffWalk (if participant had serious difficulty walking/climbing stairs):**
 
 Among participants who had difficulty walking or climbing stairs, more reported having pre-diabetes/diabetes compared to those who do not. Within respondents who did not have mobility problems, fewer people had pre-diabetes/diabetes. 
 
@@ -516,62 +554,7 @@ diffwalk1 <- ggplot(data = diabetes, aes(x = factor(DiffWalk), fill=factor(diabe
 diffwalk1
 ```
 
-**For Sex (0 = female, 1 = male):**
 
-More women than men are in this data. More women reported having pre-diabetes/diabetes than men. 
-
-```{r}
-sex1 <- ggplot(data = diabetes, aes(x = factor(Sex), fill=factor(diabetes))) +
-      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
-      labs(title = "Distribution of sex", x = "sex (0 = female, 1 = male)") +
-      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
-      guides(fill = guide_legend(title = "Diabetes"))+
-      scale_fill_manual(values=cbPalette)
-sex1
-```
-
-**For Age (separated into 13 age categories):**
-
-Older age groups have more diabetic participants than younger age groups; from 55 years onwards. 
-
-```{r}
-age1 <- ggplot(data = diabetes, aes(x = Age, fill=factor(diabetes))) +
-      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
-      labs(title = "Distribution of age groups", x = "age groups") +
-      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
-      guides(fill = guide_legend(title = "Diabetes"))+
-      scale_fill_manual(values=cbPalette)
-age1
-```
-
-**For Education (separated into 6 education levels):**
-
-At education levels 2 through 5 (meaning from grades 1 through 1-3 years of college), we see more participants with pre-diabetes/diabetes than without. At level 6 (meaning they graduated college), we see fewer participants with pre-diabetes/diabetes than without. 
-
-```{r}
-edu1 <- ggplot(data = diabetes, aes(x = Education, fill=factor(diabetes))) +
-      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
-      labs(title = "Distribution of education levels", x = "education level") +
-      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
-      guides(fill = guide_legend(title = "Diabetes"))+
-      scale_fill_manual(values=cbPalette)
-edu1
-```
-
-**For Income (income levels from 1 to 8, 1 is <= $10k and 8 is $75k+):**
-
-At lower income levels 1 through 6, more people reported having pre-diabetes/diabetes than without. At income levels 7 and 8, fewer people had pre-diabetes/diabetes compared to people without. 
-
-
-```{r}
-income1 <- ggplot(data = diabetes, aes(x = Income, fill=factor(diabetes))) +
-      geom_bar(stat = "count", position=position_dodge(),width = 0.5, color="black")+
-      labs(title = "Distribution of income levels", x = "income level") +
-      theme(plot.title = element_text(face = "bold", hjust = 0.5))+
-      guides(fill = guide_legend(title = "Diabetes"))+
-      scale_fill_manual(values=cbPalette)
-income1
-```
 
 Again, as the data is mostly categorical, we want to run chi-square tests to check for correlations.
 
