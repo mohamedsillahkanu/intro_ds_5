@@ -104,6 +104,8 @@ Since most of our features are categorical, running summary statistics will not 
 
 **For high blood pressure**
 
+Among people who have high blood pressure, more people report to have prediabetes or diabetes than people who do not. 
+Within people without high blood pressure, fewer respondants have pre-diabetes/diabetes compare to participants who do not.
 
 ```{r}
 library(ggplot2)
@@ -119,7 +121,7 @@ highbp1
 
 **For high cholesterol**
 
-**1: has high BP, 0: does not have high BP**
+Similarly, within participants with high cholesterol, there are more with pre-diabetes/diabetes than without. Within respondants without high cholesterol, there are fewer people with pre-diabetes/diabetes than without.
 
 ``` {r}
 highchol1 <- ggplot(data = diabetes, aes(x = factor(HighChol), fill=factor(diabetes))) +
@@ -135,6 +137,8 @@ highchol1
 
 **For CholCheck (if the person has checked for cholesterol level within the past 5 years)**
 
+Most people have had their cholesterol level checked within the past 5 years. For those who have checked, more people reported having pre-diabetes/diabetes.
+
 ```{r}
 cholcheck1 <- ggplot(data = diabetes, aes(x = factor(CholCheck), fill=factor(diabetes))) +
       geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
@@ -147,7 +151,9 @@ cholcheck1
 
 ```
 
-**For BMI levels**
+**For BMI levels:**
+
+As we can see on both the box plot and the histograms, there is a good number of people who have BMI of 30 and above within people with pre-diabetes/diabetes and without. Participants with pre-diabetes/diabetes have higher BMI overall. Just as a note, a BMI of 25-29.9 is considered overweight, and 30 and above is considered obese. 
 
 ```{r}
 bmi <- ggplot(data = diabetes, aes(x = BMI, fill=factor(diabetes))) +
@@ -166,19 +172,20 @@ bmi1 <- ggplot(data = diabts1, aes(x = BMI)) +
       geom_histogram(width = 0.5, color="black", fill="plum3")+
       labs(title = "Distribution of BMI among \npeople with pre/diabetes", x = "BMI") +
       theme(plot.title = element_text(size = 12, face = "bold", hjust = 0.5))
-bmi1
 
 bmi0 <- ggplot(data = diabts0, aes(x = BMI)) +
       geom_histogram(width = 0.5, color="black", fill="plum3")+
       labs(title = "Distribution of BMI among \npeople without pre/diabetes", x = "BMI") +
       theme(plot.title = element_text(size = 12, face = "bold", hjust = 0.5))
-bmi0
 
 grid.arrange(bmi1, bmi0, nrow = 1, ncol = 2)
 ```
 
 
-**For Smoker**
+**For Smoker:**
+
+Among respondents that smoked, more people also reported having pre-diabetes/diabetes than those without. Within people who do not smoke, fewer reported having pre-diabetes/diabetes than without.
+
 ```{r}
 smoker1 <- ggplot(data = diabetes, aes(x = factor(Smoker), fill=factor(diabetes))) +
       geom_bar(stat = "count", position=position_dodge(),width = 0.5, color = "black")+
@@ -190,7 +197,9 @@ smoker1 <- ggplot(data = diabetes, aes(x = factor(Smoker), fill=factor(diabetes)
 smoker1
 ```
 
-**For Stroke**
+**For Stroke:**
+
+Most survey participants did not report having had a stroke. Within those who did, more also reported having pre-diabetes/diabetes. 
 
 ```{r}
 stroke1 <- ggplot(data = diabetes, aes(x = factor(Stroke), fill=factor(diabetes))) +
@@ -204,6 +213,8 @@ stroke1
 ```
 
 **For Heart Disease/Attack**
+
+Within 
 
 ```{r}
 heart_dis1 <- ggplot(data = diabetes, aes(x = factor(heart_dis), fill=factor(diabetes))) +
@@ -407,21 +418,55 @@ Again, as the data is mostly categorical, we want to run chi-square tests to che
 
 ```{r}
 chisq.test(diabetes$diabetes, diabetes$HighBP)
+```
+
+```{r}
 chisq.test(diabetes$diabetes, diabetes$HighChol)
+```
+
+```{r}
 chisq.test(diabetes$diabetes, diabetes$CholCheck)
+```
+```{r}
 chisq.test(diabetes$diabetes, diabetes$Smoker)
+```
+```{r}
 chisq.test(diabetes$diabetes, diabetes$heart_dis)
+```
+```{r}
 chisq.test(diabetes$diabetes, diabetes$PhysActivity)
+```
+```{r}
 chisq.test(diabetes$diabetes, diabetes$Fruits)
+```
+```{r}
 chisq.test(diabetes$diabetes, diabetes$Veggies)
+```
+```{r}
 chisq.test(diabetes$diabetes, diabetes$hvy_alc)
+```
+```{r}
 chisq.test(diabetes$diabetes, diabetes$DiffWalk)
+```
+```{r}
 chisq.test(diabetes$diabetes, diabetes$Sex)
+```
+```{r}
 chisq.test(diabetes$diabetes, diabetes$AnyHealthcare)
+```
+```{r}
 chisq.test(diabetes$diabetes, diabetes$NoDocbcCost)
+```
+```{r}
 chisq.test(diabetes$diabetes, diabetes$GenHlth)
+```
+```{r}
 chisq.test(diabetes$diabetes, diabetes$MentHlth)
+```
+```{r}
 chisq.test(diabetes$diabetes, diabetes$Education)
+```
+```{r}
 chisq.test(diabetes$diabetes, diabetes$Income)
 ```
 
