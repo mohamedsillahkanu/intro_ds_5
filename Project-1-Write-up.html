@@ -1580,20 +1580,59 @@ border-radius: 0px;
 </div>
 
 
-<center>
 <div id="examination-of-risk-factors-strongly-associated-with-the-likelihood-of-developing-diabetes-in-the-united-states" class="section level1">
-<h1>EXAMINATION OF RISK FACTORS STRONGLY ASSOCIATED WITH THE LIKELIHOOD
-OF DEVELOPING DIABETES IN THE UNITED STATES</h1>
-<center>
-<p>Abstract here</p>
+<h1>Examination of Risk Factors Strongly Associated with the Likelihood
+of Developing Diabetes in the United States</h1>
+<p><strong>Summary</strong> Diabetes is one of the most common chronic
+diseases in the United States. According to the Centers for Disease
+Control and Prevention (CDC), 34.2 million Americans have diabetes and
+88 million have pre-diabetes (2018).For Project 1, our group looked at a
+data set from <a href="https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset?select=diabetes_012_health_indicators_BRFSS2015.csv">Kaggle</a>
+containing pre-diabetes &amp; diabetes-related health-risks. We want to
+assess which risk factors were most associated with diabetes. Through
+exploratory data analysis (EDA), we had more insights into the data and
+some possibilities we could explore when modelling for project 2.</p>
 <div id="background" class="section level4">
 <h4>1. Background</h4>
+<p><em>What is diabetes?</em> It is a common chronic condition that
+causes low insulin level in humans– that’s the hormone that helps us
+break down glucose(sugar) into energy. This cause diabetics to have high
+level of sugar in their blood. Diabetic patients develop pre-diabetes
+first, which is where you have high blood sugar level but not enough to
+be considered having diabetes. Many complications can result from
+diabetes, including heart disease, vision loss, kidney disease, limb
+amputation, etc.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>This disease affects millions of people. In 2018, the Center for
+Disease Control and Prevention (CDC) reported 34.2 million Americans
+have diabetes and 88 million have pre-diabetes<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. It is also the most
+expensive chronic condition in the United States, with $1 out of every
+$4 in health care costs spent on treating people with diabetes<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. The
+estimated total financial cost of diabetes is $327 billion dollars in
+2017<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p>
+<p>Although there is no known cure for diabetes, many individuals can
+lessen its negative effects by adopting lifestyle changes such as
+decreasing weight, eating a healthy diet, exercising, and receiving
+medical care (pills, insulin injections, etc.). Predictive models for
+diabetes risk are significant tools for the general population and
+public health officials since early diagnosis can result in lifestyle
+changes and more successful treatment.<sup>[2]</sup>[5]</p>
+</div>
+<div id="smart-question-objective" class="section level4">
+<h4>2. SMART question &amp; objective</h4>
+<p><strong>SMART question:</strong> what risk factors that are strongly
+associated with the likelihood of developing diabetes in the United
+States?</p>
+<p>For the purposes of project 1, we will be exploring the data set
+using exploratory data analysis tools including running descriptive
+statistics, creating graphs and plots, and running chi-square tests. We
+hope to investigate and understand the data set to inform our analysis
+process in project 2.</p>
 </div>
 <div id="data" class="section level4">
-<h4>2. Data</h4>
+<h4>3. Data</h4>
 </div>
 <div id="eda" class="section level4">
-<h4>3. EDA</h4>
+<h4>4. EDA</h4>
 <p><strong>First, we ran some summary statistics for the data
 set:</strong></p>
 <pre class="r"><code>summary(diabetes)</code></pre>
@@ -2055,7 +2094,34 @@ tests to check for correlations.</p>
 </div>
 <div id="conclusion" class="section level4">
 <h4>4. Conclusion</h4>
+<div id="references" class="section level5">
+<h5>References</h5>
+<p>1.Centers for Disease Control and Prevention (2020). <em>National
+Diabetes Statistics Report 2020. Estimates of diabetes and its burden in
+the United States.</em></p>
+<p>2.Centers for Disease Control and Prevention. (2022, December 21).
+<em>Health and economic benefits of diabetes interventions. Centers for
+Disease Control and Prevention.</em> Retrieved March 22, 2023, from <a href="https://www.cdc.gov/chronicdisease/programs-impact/pop/diabetes.html" class="uri">https://www.cdc.gov/chronicdisease/programs-impact/pop/diabetes.html</a></p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>American Diabetes Association | ADA. (n.d.). <em>The cost of
+diabetes.</em> Retrieved March 22, 2023, from <a href="https://diabetes.org/about-us/statistics/cost-diabetes" class="uri">https://diabetes.org/about-us/statistics/cost-diabetes</a></p></li>
+<li><p>Teboul, A. (2021, November 8). <em>Diabetes health indicators
+dataset.</em> Kaggle. Retrieved March 22, 2023, from <a href="https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset?select=diabetes_012_health_indicators_BRFSS2015.csv" class="uri">https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset?select=diabetes_012_health_indicators_BRFSS2015.csv</a></p></li>
+<li><p>Centers for Disease Control and Prevention. (2022, July 7).
+<em>What is diabetes?</em> Centers for Disease Control and Prevention.
+Retrieved March 22, 2023, from <a href="https://www.cdc.gov/diabetes/basics/diabetes.html" class="uri">https://www.cdc.gov/diabetes/basics/diabetes.html</a></p></li>
+</ol>
 </div>
+</div>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>5<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>1<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>2<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>3<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
 
 

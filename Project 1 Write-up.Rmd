@@ -1,6 +1,6 @@
 ---
-title: "DATS6101 Project 1"
-author: Group 5
+title: "DATS6101 Project 1 - Examination of Risk Factors Strongly Associated with the Likelihood of Developing Diabetes in the United States"
+author: Group 5 - Erika Pham, Mohamed Sillah Kanu, Sri Varshini Yaddanapudi
 output:
   html_document:
     code_folding: hide
@@ -80,20 +80,139 @@ cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2"
   #scale_colour_manual(values=cbPalette)
 ```
 
-# Examination of Risk Factors Strongly Associated with the Likelihood of Developing Diabetes in the United States
+**Summary:**
 
-**Summary**
 Diabetes is one of the most common chronic diseases in the United States. According to the Centers for Disease Control and Prevention (CDC), 34.2 million Americans have diabetes and 88 million have pre-diabetes (2018).For Project 1, our group looked at a data set from [Kaggle](https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset?select=diabetes_012_health_indicators_BRFSS2015.csv) containing pre-diabetes & diabetes-related health-risks. We want to assess which risk factors were most associated with diabetes. Through exploratory data analysis (EDA), we had more insights into the data and some possibilities we could explore when modelling for project 2. 
 
 #### 1. Background
 
-Diabetes is a common chronic condition that affects millions of people. In 2018, the Center for Disease Control and Prevention (CDC) reported 34.2 million Americans have diabetes and 88 million have pre-diabetes^[1]. It is also the most expensive chronic condition in the United States, with $1 out of every $4 in health care costs spent on treating people with diabetes^[2]. The estimated total financial cost of diabetes is $327 billion dollars in 2017^[3].
+*What is diabetes?* It is a common chronic condition that causes low insulin level in humans– that’s the hormone that helps us break down glucose(sugar) into energy. This cause diabetics to have high level of sugar in their blood. Diabetic patients develop pre-diabetes first, which is where you have high blood sugar level but not enough to be considered having diabetes. Many complications can result from diabetes, including heart disease, vision loss, kidney disease, limb amputation, etc.^[5] 
 
-*What is diabetes?* It is a health condition that causes low insulin level in humans– that’s the hormone that helps us break down glucose(sugar) into energy. This cause diabetics to have high level of sugar in their blood. Many complications can result from diabetes, including heart disease, vision loss, kidney disease, limb amputation, etc.^[5] 
+This disease affects millions of people. In 2018, the Center for Disease Control and Prevention (CDC) reported 34.2 million Americans have diabetes and 88 million have pre-diabetes^[1]. It is also the most expensive chronic condition in the United States, with $1 out of every $4 in health care costs spent on treating people with diabetes^[2]. The estimated total financial cost of diabetes is $327 billion dollars in 2017^[3].
+
+Although there is no known cure for diabetes, many individuals can lessen its negative effects by adopting lifestyle changes such as decreasing weight, eating a healthy diet, exercising, and receiving medical care (pills, insulin injections, etc.). Predictive models for diabetes risk are significant tools for the general population and public health officials since early diagnosis can result in lifestyle changes and more successful treatment.^[2]^[5]
+
+#### 2. SMART question & objective
+
+**SMART question:** what risk factors that are strongly associated with the likelihood of developing diabetes in the United States?
+
+For the purposes of project 1, we will be exploring the data set using exploratory data analysis tools including running descriptive statistics, creating graphs and plots, and running chi-square tests. We hope to investigate and understand the data set to inform our analysis process in project 2. 
+
+The expected outcome of this project is a better understanding of the relationship between various health indicators and diabetes. This exploration, along with further research from existing literature, could be very useful in informing future analysis, not just within the scope of this course but in general. 
+
+#### 3. Data
+
+**What do we know about this dataset?**
+
+Every year since 1984, the CDC conducts the Behavioral Risk Factor Surveillance System (BRFSS) - a health-related telephone survey collecting data on various health-related behaviors and risk factors. The CDC survey collects over 400,000 responses, with more than 300 questions; making it one of the largest conducted health surveys in the world.^[6]
+
+For the 2015 BRFSS survey, a total of 491,773 respondents were interviewed from all 50 states, the District of Columbia, and three US territories. The survey included questions on various health behaviors, including tobacco use, physical activity, nutrition, and chronic health conditions such as diabetes. The survey data was collected using random digit dialing (RDD) techniques, where telephone numbers were randomly generated and called to identify potential survey respondents. Respondents were then asked to answer a series of questions on their health behaviors and health status. 
+
+The data set we used called "Diabetes Health Indicators" was subsetted and cleaned from this survey, done in 2015, and posted on Kaggle, [linked here](https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset?select=diabetes_012_health_indicators_BRFSS2015.csv). Specifically, we used the file 'diabetes _ binary _ 5050split _ health _ indicators _ BRFSS2015.csv, which has 70,692 responses and 21 variables.It has an equal 50-50 split of respondents, randomly selected, with no diabetes and with either pre-diabetes or diabetes and is therefore balanced.The target variable Diabetes_binary has 2 classes. 0 is for no diabetes, and 1 is for prediabetes or diabetes.How the author, Alex Teboul, cleaned the data can be found [here](https://www.kaggle.com/code/alexteboul/diabetes-health-indicators-dataset-notebook/notebook).
+
+**What are the limitations of this data set?**
+
+The usual limitations apply - The "Diabetes Health Indicators" dataset only contains data on people who have received a diabetes diagnosis, which may not be typical of the overall population. The accuracy of any analysis or inferences made from the data may be impacted by the dataset's potential missing or incomplete data.The accuracy of any analysis or conclusions taken from the data may be impacted by flaws or inconsistencies in the data, such as inaccurate or misspelled entries. 
+
+The generalizability of the results may be impacted by biases in the dataset's selection or data collection, such as the underrepresentation of age or ethnic groups. While working with health data, ethical issues including privacy concerns or potential stigmatization of people with diabetes may arise. These issues should be properly explored and addressed. 
+
+It is worth noting that the BRFSS is a self-reported survey, meaning that the data is based on respondents' own perceptions and reports of their health behaviors and conditions. As with any self-reported survey, there may be limitations and biases in the data that should be carefully considered when using it for analysis or modeling. It is also likely that some participants in the survey have not been diagnosed with pre-diabetes or diabetes yet, but have already developed the condition. 
+
+For this data set in particular, since the data grouped diabetic and pre-diabetic participants together as one class, there is potential missing information we could not get compared to if we were separating the two groups. 
+
+**Features/Variables Descriptions:**
+
+For easier comparison, we have roughly grouped the features into *3 categories*:
+
+**I.Bio-demographical factors:**  
+
+1.Sex:  0 indicates female and 1 represents male 
+
+2.Age: it has been categorized into thirteen-level age 
+
+3. Categories. Level 1 is between ages 18-24, level 2 is 25-29,3      is 30-34, 4 is 35-39, 5 is 40-44, 6 is 45-49, 7 is 50-54, 8 is 55-59, 9 is 60 - 64, 10 is 65-69, 11 is 70-74, 12 is 75-79, 13 is 80 and older. 
+
+4. Education: The education level scale is between 1 to 6.  
+Level 1 representing never attended/only kindergarten., level 2 is studied grades 1 to 8. Level 3 is grades 9 to 11, Level 4 is studied grade 12 or GED (graduated High School), Level 5 is attended college for 1 to 3 years, and lastly level 6 is attended college for over 4 years or graduated college.  
+
+5.Income: Income scale is from 1 to 8; Level 1 is below annual income of $10,000 or less. Level 1 being $15,000 or less, 3 is $20,000 or below, 4 is $25,000 or below, 5 is $35,000 or below, 6 is $50,000 or below, level 7 is below or equal to $75,000. Lastly, level 8 is above $75,000. 
 
 
-#### 2. Data
-#### 3. EDA
+**II.Health Indicators:**  
+
+  
+
+HighBP: High Blood Pressure where 0 represents no high blood pressure and 1 indicates they have blood pressure. 
+
+ 
+
+HighChol: High Cholesterol where 0 represents no high cholesterol and 1 indicates they have high cholesterol. 
+
+ 
+
+BMI: The survey participants’ Body Mass Index  
+
+ 
+
+Stroke: Participants have been asked if they’ve ever had a stroke and based on their responses it has been divided into 0 and 1 representing no and yes respectively.  
+
+ 
+
+HeartDiseaseorAttack: Participants have been asked if they’ve ever had a history of heart attack or heart diseases and based on their responses it has been divided into 0 and 1 representing no and yes respectively.  
+
+ 
+
+GenHlth: Responding to the question asked over telephone, “would you say that in general your health is on scale 1 to 5?”, participants responses have been recorded where 1 is ‘excellent’, 2 is ‘very good’, 3 is ‘good’, 4 is ‘fair’ and 5 is ‘poor’. 
+
+ 
+
+  
+
+MentHlth: Days of poor mental health have been recorded between 1 to 30 days. 
+
+ 
+
+PhysHlth: Physical illness or injury days in the past 30 days based on scale 1 to 30 days.   
+
+ 
+
+Behavioral/lifestyle & other factors: 
+
+                
+
+Smoker: Responding to the question “Have you ever smoked at least 100 cigarettes i.e., five packs in your entire life?”, participants’ responses have been recorded as 0 that represents no and 1 for yes. 
+
+ 
+
+PhysActivity: Participants’ physical activity has been taken into consideration in the past 30 days apart from their day job. Based on their responses 0 has been recorded as no and 1 for yes. 
+
+ 
+
+Fruits: Consumes at least one or more fruits a day, 0 is no and 1 for yes. 
+
+ 
+
+Veggies: Consumes at least one or more vegetables a day, 0 is no and 1 for yes. 
+
+ 
+
+HvyAlcoholConsumption: For any male consuming fourteen or more drinks per week was considered a heavy alcohol consumer and for adult females it is seven or more per week, 0 is no and 1 for yes. 
+
+ 
+
+ 
+
+AnyHealthcare: In response to “Have any kind of health care coverage, including health insurance, prepaid plans such as HMO etc.”, 0 represents no and 1 for yes. 
+
+ 
+
+NoDocbcCost: When asked if the participants if there was ever a time, they needed to visit a doctor in the past 12 moths but couldn’t because of the cost, their responses are recorded as 0 which is a no and 1 for a yes.  
+
+ 
+
+DiffWalk: In response to “Do you have serious difficulty walking or climbing stairs?”, responses have been recorded as 0 representing no and 1 for yes. 
+
+#### 4. EDA
 
 ```{r, include = FALSE}
 # subseting the data between people who have pre/diabetes and people who do not
@@ -523,3 +642,5 @@ chisq.test(diabetes$diabetes, diabetes$Income)
 4. Teboul, A. (2021, November 8). *Diabetes health indicators dataset.* Kaggle. Retrieved March 22, 2023, from https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset?select=diabetes_012_health_indicators_BRFSS2015.csv 
 
 5. Centers for Disease Control and Prevention. (2022, July 7). *What is diabetes?* Centers for Disease Control and Prevention. Retrieved March 22, 2023, from https://www.cdc.gov/diabetes/basics/diabetes.html 
+
+6.Centers for Disease Control and Prevention. (2014, May 16). *CDC - about BRFSS.* Centers for Disease Control and Prevention. Retrieved March 22, 2023, from https://www.cdc.gov/brfss/about/index.htm 
