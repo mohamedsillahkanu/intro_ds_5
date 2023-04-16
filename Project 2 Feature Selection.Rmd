@@ -118,7 +118,7 @@ test <- diabetes50[!sample, ]
 
 The method shown in class doesn't work because we have more than 15 variables. I will try a couple of other things. 
 
-I am going to try running a full model (putting every single variables into the model) and then estimate the variable importance. From there, I'm going to subset
+I am going to try running a full model (putting every single variables into the model) and then estimate the variable importance. From there, I'm going to subset the most important variables and try to use bestglm package again to select the features. 
 ```{r, comment = ""}
 library(rminer)
 library(parsnip)
@@ -131,12 +131,50 @@ library(parsnip)
 full <- glm(diabetes~HighBP+HighChol+CholCheck+BMI+Smoker+Stroke+heart_dis+PhysActivity+Fruits+Veggies+hvy_alc+AnyHealthcare+NoDocbcCost+GenHlth+MentHlth+PhysHlth+DiffWalk+Sex+Age+Education+Income, data=diabetes50, family=binomial(link="logit"))
 summary(full)
 # estimate variable importance
-importance <- varImp(full, scale=FALSE)
+imp <- as.data.frame(varImp(full, scale=FALSE))
+imp <- data.frame(overall = imp$Overall, names=rownames(imp))
+imp[order(imp$overall, decreasing=TRUE),]
 # summarize importance
-print(importance)
+print(imp)
 
 ```
+I'm going to subset the data with BMI, GenHlth, Age, HighBP, HighChol, CholCheck, hvy_alc, Sex, heart_dis, Income, DiffWalk, Stroke, PhysHlth, Veggies, MentHlth (15 total)
 
+```{r, comment =""}
+var15 <- c("BMI", "GenHlth", "Age", "HighBP", "HighChol", "CholCheck", "hvy_alc", "Sex", "heart_dis", "Income", "DiffWalk", "Stroke", "PhysHlth", "Veggies", "MentHlth", "y")
+diabetes15 <- diabetes_y[var15]
+str(diabetes15)
+```
+Let's try bestglm again.
+
+```{r, comment = ""}
+library(bestglm)
+library(caret)
+library(pROC)
+library(glmnet)
+library(glmulti)
+
+feat_select <- bestglm(Xy = diabetes15, family = binomial, IC="AIC", method = "exhaustive")
+summary(feat_select)
+```
+
+Oops, I found another package that can handle a lot of possible models. It's called 'glmulti', I want to try it now. 
+```{r, comment = ""}
+library(glmulti)
+glmulti.logistic.out <-
+  glmulti(diabetes~HighBP+HighChol+CholCheck+BMI+Smoker+Stroke+heart_dis+PhysActivity+Fruits+Veggies+hvy_alc+AnyHealthcare+NoDocbcCost+GenHlth+MentHlth+PhysHlth+DiffWalk+Sex+Age+Education+Income,
+          data = diabetes50,
+          level = 1, # no interaction considered
+          method = "h", # exhaustive method
+          crit = "aic",
+          confsetsize = 5, # keep 5 best models
+          plotty = F, report = F, # no plots or reports
+          fitfunction = "glm", # use glm function
+          family = binomial) # binomial family for logistic regression
+
+# show 5 best models
+glmulti.logistic.out@formulas
+```
 
 
 
