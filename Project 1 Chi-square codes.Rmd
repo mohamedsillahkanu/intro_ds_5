@@ -110,8 +110,6 @@ chisq.test(diabetes_data$Diabetes_binary, diabetes_data$HvyAlcoholConsump)
 
 chisq.test(diabetes_data$Diabetes_binary, diabetes_data$DiffWalk)
 
-chisq.test(diabetes_data$Diabetes_binary, diabetes_data$Sex)
-
 chisq.test(diabetes_data$Diabetes_binary, diabetes_data$AnyHealthcare)
 
 chisq.test(diabetes_data$Diabetes_binary, diabetes_data$NoDocbcCost)
@@ -123,6 +121,8 @@ chisq.test(diabetes_data$Diabetes_binary, diabetes_data$MentHlth)
 chisq.test(diabetes_data$Diabetes_binary, diabetes_data$Education)
 
 chisq.test(diabetes_data$Diabetes_binary, diabetes_data$Income)
+
+chisq.test(diabetes_data$Diabetes_binary, diabetes_data$Sex)
 
 
 

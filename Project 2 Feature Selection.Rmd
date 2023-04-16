@@ -1,0 +1,156 @@
+---
+title: "Project 2 Write-up Draft"
+author: "Group 5"
+date: "2023-04-05"
+output: 
+ html_document:
+    code_folding: hide
+    number_sections: false
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+date: "2023-04"
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = F, message = F)
+options(scientific = T, digits = 3)
+```
+
+```{r init, include = FALSE}
+# loading in libraries
+library(ezids)
+library(tidyverse)
+library(readr)
+library(ggplot2)
+library(stringr)
+library(gridExtra)
+```
+
+## EDA Summary
+
+
+So first, I need to select which features go into the model for optimal results. From what we did last time, which is running chi-square tests on each possible predictor versus our dependent variable 'diabetes', we got that all of the included features have a relationship with the respondents' pre/diabetic status. 
+
+From the notes, I want to try using the package written in the in-class example to see if I can get anything. I would have to recode the dependent variable as 'y'.
+
+```{r, include = FALSE}
+# loading in dataset
+diabetes50 <- read.csv("diabetes_binary_5050split_health_indicators_BRFSS2015.csv")
+str(diabetes50)
+
+# renaming some longer variables
+diabetes50 <- diabetes50 %>%
+    rename("diabetes"= Diabetes_binary)
+diabetes50 <- diabetes50 %>%
+  rename("heart_dis" = HeartDiseaseorAttack)
+diabetes50 <- diabetes50 %>%
+  rename("hvy_alc" = HvyAlcoholConsump)
+
+# storing categorical variables as factor
+diabetes50$diabetes <- as.factor(diabetes50$diabetes)
+diabetes50$HighBP <- as.factor(diabetes50$HighBP)
+diabetes50$HighChol <- as.factor(diabetes50$HighChol)
+diabetes50$CholCheck <- as.factor(diabetes50$CholCheck)
+diabetes50$Smoker <- as.factor(diabetes50$Smoker)
+diabetes50$Stroke <- as.factor(diabetes50$Stroke)
+diabetes50$NoDocbcCost <- as.factor(diabetes50$NoDocbcCost)
+diabetes50$heart_dis <- as.factor(diabetes50$heart_dis)
+diabetes50$PhysActivity <- as.factor(diabetes50$PhysActivity)
+diabetes50$Fruits <- as.factor(diabetes50$Fruits)
+diabetes50$Veggies <- as.factor(diabetes50$Veggies)
+diabetes50$hvy_alc <- as.factor(diabetes50$hvy_alc)
+diabetes50$DiffWalk <- as.factor(diabetes50$DiffWalk)
+diabetes50$Sex <- as.factor(diabetes50$Sex)
+diabetes50$GenHlth <- as.factor(diabetes50$GenHlth)
+diabetes50$AnyHealthcare <- as.factor(diabetes50$AnyHealthcare)
+diabetes50$Education <- as.factor(diabetes50$Education)
+diabetes50$Income <- as.factor(diabetes50$Income)
+
+```
+
+```{r, include = FALSE}
+# colorblind color palettes
+
+# The palette with grey:
+cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+# The palette with black:
+cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+# To use for fills, add
+  #scale_fill_manual(values=cbPalette)
+
+# To use for line and point colors, add
+  #scale_colour_manual(values=cbPalette)
+```
+
+```{r, include = FALSE}
+
+# renaming diabetes to y so we can try the model selection method in the example 
+#diabetes_y <- diabetes50
+#diabetes_y$y <- diabetes50[,1]
+#diabetes_y <- subset(diabetes_y, select = -c(diabetes))
+```
+
+
+Below, I'm separating the model into training and testing data. The ratio is 70:30.
+
+```{r, comment = ""}
+library(bestglm)
+library(caret)
+library(pROC)
+library(glmnet)
+
+set.seed(1)
+sample <- sample(c(TRUE, FALSE), nrow(diabetes50), replace = TRUE, prob=c(0.7,0.3))
+train <- diabetes50[sample, ]
+test <- diabetes50[!sample, ]
+
+#feat_select <- bestglm(Xy = diabetes_y, family = binomial, IC="AIC", method = "exhaustive")
+#summary(feat_select)
+
+
+
+```
+
+The method shown in class doesn't work because we have more than 15 variables. I will try a couple of other things. 
+
+I am going to try running a full model (putting every single variables into the model) and then estimate the variable importance. From there, I'm going to subset
+```{r, comment = ""}
+library(rminer)
+library(parsnip)
+#control <- trainControl(method="repeatedcv", number=10, repeats=3)
+# train the model
+#model <-logistic_reg(mixture = double(1), penalty = double(1)) %>%
+  #set_engine("glmnet") %>%
+  #set_mode("classification") %>%
+  #fit(diabetes ~ ., data = train)
+full <- glm(diabetes~HighBP+HighChol+CholCheck+BMI+Smoker+Stroke+heart_dis+PhysActivity+Fruits+Veggies+hvy_alc+AnyHealthcare+NoDocbcCost+GenHlth+MentHlth+PhysHlth+DiffWalk+Sex+Age+Education+Income, data=diabetes50, family=binomial(link="logit"))
+summary(full)
+# estimate variable importance
+importance <- varImp(full, scale=FALSE)
+# summarize importance
+print(importance)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
