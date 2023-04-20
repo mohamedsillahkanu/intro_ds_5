@@ -128,7 +128,7 @@ library(parsnip)
   #set_engine("glmnet") %>%
   #set_mode("classification") %>%
   #fit(diabetes ~ ., data = train)
-full <- glm(diabetes~HighBP+HighChol+CholCheck+BMI+Smoker+Stroke+heart_dis+PhysActivity+Fruits+Veggies+hvy_alc+AnyHealthcare+NoDocbcCost+GenHlth+MentHlth+PhysHlth+DiffWalk+Sex+Age+Education+Income, data=diabetes50, family=binomial(link="logit"))
+full <- glm(diabetes~., data=diabetes50, family=binomial(link="logit"))
 summary(full)
 # estimate variable importance
 imp <- as.data.frame(varImp(full, scale=FALSE))
@@ -176,11 +176,34 @@ glmulti.logistic.out <-
 glmulti.logistic.out@formulas
 ```
 
+Okay, so the above models have been running for 8 hours and not returning anything. 
+
+2 options: 1. Stepwise selection or 2. Random Forest (make a tree). Actually, I can probably also try LASSO. 
+
+I'll try option 1 first. 
+
+```{r, comment=""}
+library(MASS)
+library(caret)
+library(leaps)
+
+# stepwise model, both directions
+step1 <- stepAIC(full, direction = "both", trace = FALSE)
+summary(step1)
 
 
+```
+Let's try stepwise, backwards:
 
+```{r, comment = ""}
 
+step2 <- stepAIC(full, direction = "backward", trace = TRUE)
+summary(step2)
+```
 
+The final model returned uses 18 variables. 
+
+I want to test this model. 
 
 
 
