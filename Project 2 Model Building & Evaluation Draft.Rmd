@@ -414,3 +414,48 @@ plot(ROCR_perf_test,colorize=TRUE,print.cutoffs.at=seq(0.1,by=0.1))
 cost_perf = performance(ROCR_pred_test, "cost") 
 ROCR_pred_test@cutoffs[[1]][which.min(cost_perf@y.values[[1]])]
 ```
+
+Tree time:
+
+```{r}
+library(rpart)
+library(rpart.plot)
+# grow tree
+tree1 <- rpart(diabetes ~ HighBP + HighChol + CholCheck + BMI + 
+    Stroke + heart_dis + PhysActivity + Veggies + hvy_alc + GenHlth + 
+    MentHlth + PhysHlth + DiffWalk + Sex + Age + Education + 
+    Income, method="class", data=data_train)
+# display results
+printcp(tree1)
+# visualize cv results
+plotcp(tree1)
+# summary of splits
+summary(tree1)
+
+# plot tree
+rpart.plot(tree1, uniform=TRUE, main="Classification Tree for Diabetes")
+text(tree1, use.n=TRUE, all=TRUE, cex=.8)
+
+# create pretty plot of tree
+post(tree1, file = "C:/College/DATS6101/project/intro_ds_5/tree.ps",
+     title = "Classification Tree for Diabetes")
+```
+
+```{r}
+# prune the tree
+tree2 <- prune(tree1, cp=tree1$cptable[which.min(tree1$cptable[,"xerror"]),"CP"])
+
+# plot the tree
+rpart.plot(tree2, uniform=T, main="Pruned Classification Tree for Diabetes")
+text(tree2, use.n=T, all=T, cex=.8)
+post(tree2, file="C:/College/DATS6101/project/intro_ds_5/pruned_tree.ps", 
+     title="Pruned Classification Tree for Diabetes")
+
+
+```
+
+```{r}
+tree_pred <- predict(tree1, newdata=data_test, type = "class")
+cm3 <- confusionMatrix(tree_pred, data_test$diabetes)
+acc3 <- mean(tree_pred == data_test$diabetes)
+```
