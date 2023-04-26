@@ -1,0 +1,88 @@
+---
+title: "Diabetes_Project2"
+output: html_document
+date: "2023-04-26"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+
+getwd()
+
+setwd("/Users/srivarshini/Downloads/intro_ds_5-main")
+
+diabetes2 <- read.csv("diabetes_binary_5050split_health_indicators_BRFSS2015.csv")
+
+summary(diabetes2)
+
+colnames(diabetes2)
+
+head(diabetes, n=10)
+
+table(diabetes2$Diabetes_binary)
+
+str(diabetes2)
+
+sum(is.na(diabetes2)) 
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+
+cor(diabetes2)
+
+library(ggplot2)
+
+library(reshape2)
+
+ggplot(diabetes2, aes(x = BMI)) + 
+  geom_histogram(fill = "blue", bins = 20) +
+  ggtitle("Histogram of variable_name")
+
+ggplot(diabetes2, aes(x = HighBP)) + 
+  geom_histogram(fill = "red", bins = 20) +
+  ggtitle("Histogram of variable_name")
+
+ggplot(diabetes2, aes(x = HighChol)) + 
+  geom_histogram(fill = "pink", bins = 20) +
+  ggtitle("Histogram of variable_name")
+
+ggplot(diabetes2, aes(x = HighBP)) + 
+  geom_histogram(fill = "green", bins = 20) +
+  ggtitle("Histogram of variable_name")
+
+ggplot(diabetes2, aes(x = HighBP, fill = factor(Sex))) +
+  geom_bar(position = "dodge") +
+  ggtitle("Barplot of High Blood Pressure by sex")
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+library(corrplot)
+
+cor_data = cor(diabetes2)
+ 
+print("Correlation matrix")
+
+print(cor_data)
+
+corrplot(cor_data,method = "circle", number.cex = 0.5)
+```
+
