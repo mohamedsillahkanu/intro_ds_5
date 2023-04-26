@@ -282,8 +282,8 @@ library(caret)
 library(pROC)
 library(glmnet)
 
-set.seed(100)
-sample <- sample(c(TRUE, FALSE), nrow(diabetes50), replace = TRUE, prob=c(0.7,0.3))
+set.seed(5000)
+sample <- sample(c(TRUE, FALSE), nrow(diabetes50), replace = TRUE, prob=c(0.8,0.2))
 data_train <- diabetes50[sample, ]
 data_test <- diabetes50[!sample, ]
 
@@ -349,7 +349,7 @@ I want to look at an accuracy/confusion matrix.
 
 ```{r, comment = ""}
 
-cm1 <- table(data_train$diabetes, data_train$train_pred<.5)
+cm1 <- table(data_train$diabetes, data_train$train_pred<.4)
 xkabledply( cm1, title = "Confusion Matrix for Logistic Regression Model (reduced)" )
 acc1_05 <- round(100*(cm1[1,1]+cm1[2,2])/sum(cm1), digits=1)
 acc1_05
@@ -370,7 +370,7 @@ acc2_05
 Accuracy on test model is 25, which means it is performing similarly poorly (lol). At least it's not overfitting.
 
 ```{r}
-# visualize .6 cutoff (lowest point of the previous plot)
+# visualize .4 cutoff 
 cm_info <- ConfusionMatrixInfo( data = data_test, predict = "test_pred", 
                                 actual = "diabetes", cutoff = .4 )
 ggthemr("flat")
@@ -380,7 +380,7 @@ Let's see if finding the ROC can help with some evaluation and tuning.
 
 ```{r, comment = ""}
 
-roc_train1 <- roc(diabetes~train_pred, data=train)
+roc_train1 <- roc(diabetes~train_pred, data=data_train)
 plot(roc_train1)
 auc(roc_train1)
 ```
@@ -401,12 +401,12 @@ p1 <- round(100*(cm1[1,1]/(cm1[1,1]+cm1[1,2])), digits = 1)
 p1
 r1 <- round(100*(cm1[1,1]/(cm1[1,1]+cm1[2,1])), digits = 1)
 r1
-f11 <- 2*(p1*r1)/(p1+r1)
+f11 <- 2*((p1*r1)/(p1+r1))
 f11
 ```
 
 ```{r}
-ROCR_pred_test <- prediction(test_pred, data_test$diabetes)
+ROCR_pred_test <- prediction(train_pred, data_train$diabetes)
 ROCR_perf_test <- performance(ROCR_pred_test,'tpr','fpr')
 plot(ROCR_perf_test,colorize=TRUE,print.cutoffs.at=seq(0.1,by=0.1))
 ```
@@ -433,8 +433,8 @@ plotcp(tree1)
 summary(tree1)
 
 # plot tree
-rpart.plot(tree1, uniform=TRUE, main="Classification Tree for Diabetes")
-text(tree1, use.n=TRUE, all=TRUE, cex=.8)
+tree1_plot <- rpart.plot(tree1, uniform=TRUE, main="Classification Tree for Diabetes")
+#text(tree1_plot, use.n=TRUE, all=TRUE, cex=.8) # this doesn't always work for some reason
 
 # create pretty plot of tree
 post(tree1, file = "C:/College/DATS6101/project/intro_ds_5/tree.ps",
@@ -447,7 +447,7 @@ tree2 <- prune(tree1, cp=tree1$cptable[which.min(tree1$cptable[,"xerror"]),"CP"]
 
 # plot the tree
 rpart.plot(tree2, uniform=T, main="Pruned Classification Tree for Diabetes")
-text(tree2, use.n=T, all=T, cex=.8)
+#text(tree2, use.n=T, all=T, cex=.8)
 post(tree2, file="C:/College/DATS6101/project/intro_ds_5/pruned_tree.ps", 
      title="Pruned Classification Tree for Diabetes")
 
@@ -457,5 +457,30 @@ post(tree2, file="C:/College/DATS6101/project/intro_ds_5/pruned_tree.ps",
 ```{r}
 tree_pred <- predict(tree1, newdata=data_test, type = "class")
 cm3 <- confusionMatrix(tree_pred, data_test$diabetes)
+
 acc3 <- mean(tree_pred == data_test$diabetes)
+# come back to this later
 ```
+
+Random Forests
+```{r, comment = ""}
+library(randomForest)
+
+tree4 <- randomForest(diabetes ~ HighBP + HighChol + CholCheck + BMI + 
+    Stroke + heart_dis + PhysActivity + Veggies + hvy_alc + GenHlth + 
+    MentHlth + PhysHlth + DiffWalk + Sex + Age + Education + 
+    Income, data=data_train)
+
+print(tree4)
+importance(tree4)
+```
+
+```{r, comment = ""}
+tree4_pred <- predict(tree4, newdata=data_test)
+cm4 <- confusionMatrix(tree4_pred, data_test$diabetes)
+acc4 <- mean(tree4_pred == data_test$diabetes)
+cm4
+acc4 
+```
+
+Add some CV validation here for trees
