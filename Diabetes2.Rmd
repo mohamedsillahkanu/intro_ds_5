@@ -1,5 +1,6 @@
 ---
 title: "Diabetes_Project2"
+author: "Amrutha Sri Varshini"
 output: html_document
 date: "2023-04-26"
 ---
