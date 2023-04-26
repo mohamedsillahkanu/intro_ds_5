@@ -1,5 +1,5 @@
 ---
-title: "Project 2 Write-up Draft"
+title: "Project 2 Feature Selection"
 author: "Group 5"
 date: "2023-04-05"
 output: 
@@ -203,7 +203,21 @@ summary(step2)
 
 The final model returned uses 18 variables. 
 
-I want to test this model. 
+I want to test this model. Let's find ROC/AUC.
+
+```{r, comment = ""}
+final_model <- 
+```
+
+
+Tree time! 
+
+```{r, comment = ""}
+library(rpart)
+ctree <- rpart(diabetes)
+
+
+```
 
 
 
