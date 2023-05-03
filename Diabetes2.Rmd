@@ -99,3 +99,45 @@ rpart.plot(diabetes_tree)
 
 ```
 
+
+```{r}
+#Lasso
+
+library(glmnet)
+
+#defining target and predictor variables x and y
+
+y <- diabetes2$Diabetes_binary
+
+x <- data.matrix(diabetes2[,c('HighBP','HighChol','HeartDiseaseorAttack','PhysHlth','DiffWalk','Sex','Age','CholCheck')])
+
+# finding optimal lambda value
+cv_model <- cv.glmnet(x, y, alpha = 1)
+
+#find optimal lambda value that minimizes test MSE
+best_lambda <- cv_model$lambda.min
+best_lambda
+
+plot(cv_model)
+
+# finding features for best model
+best_model <- glmnet(x, y, alpha = 1, lambda = best_lambda)
+coef(best_model)
+
+new = matrix(c(0,1,0,1,1,1,0,1), nrow=1, ncol=8)
+
+#use lasso regression model to predict response value
+predict(best_model, s = best_lambda, newx = new)
+
+y_predicted <- predict(best_model, s = best_lambda, newx = x)
+
+#find SST and SSE
+sst <- sum((y - mean(y))^2)
+sse <- sum((y_predicted - y)^2)
+
+#find R-Squared
+rsq <- 1 - sse/sst
+rsq
+
+# The R-squared turns out to be 0.2329326. That is, the best model was able to explain 23.29% of the variation in the response values of the training data.
+```
