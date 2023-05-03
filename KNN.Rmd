@@ -1,0 +1,85 @@
+---
+title: "Group project"
+author: "Mohamed Sillah Kanu"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: show
+    number_sections: false
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+```{r init, include=F}
+# The package "ezids" (EZ Intro to Data Science) includes some helper functions we developed for the course. 
+# Some of the frequently used functions are loadPkg(), xkabledply(), xkablesummary(), uzscale(), etc.
+# You will need to install it (once) from GitHub.
+# library(devtools)
+# devtools::install_github("physicsland/ezids")
+# Then load the package in your R session.
+library(ezids)
+```
+
+
+```{r setup, include=FALSE}
+# Some of common RMD options (and the defaults) are: 
+# include=T, eval=T, echo=T, results='hide'/'asis'/'markup',..., collapse=F, warning=T, message=T, error=T, cache=T, fig.width=6, fig.height=4, fig.dim=c(6,4) #inches, fig.align='left'/'center','right', 
+knitr::opts_chunk$set(warning = F, message = F)
+# Can globally set option for number display format.
+options(scientific=T, digits = 3) 
+# options(scipen=9, digits = 3) 
+```
+
+```{r}
+# 1. Do not provide answers/comments inside code blocks (like here) -- those are notes between coders/self and will be ignored for grading. 
+# 2. Make sure your knitr options are set to include all results/code to be graded in the final document.
+# 3. All charts/graphs/tables should have appropriate titles/labels/captions. 
+# 4. Compose your answers using inline R code instead of using the code-block output as much as you can. 
+# 5. Your grade is also determined by the style. Even if you answer everything correctly, but the .html does not look appealing, you will not get full credit. Pay attention to the details that we mentioned in class/homework and in previous sample .Rmd files. For example, how to use #, ##, ###, ..., bold face, italics, inline codes, tables, ..., {results = "asis"}, use of colors in plots/ggplots, and so forth.
+
+```{r}
+# load the required library
+library(rpart)
+# read in the CSV file
+dia <- read.csv("C:/Users/YUSUF/Desktop/diabetes.csv")
+ ##create a random number equal 90% of total number of rows
+ ran <- sample(1:nrow(dia),0.9 * nrow(dia))
+ 
+ ##the normalization function is created
+ nor <-function(x) { (x -min(x))/(max(x)-min(x))   }
+ 
+ ##normalization function is created
+ dia_nor <- as.data.frame(lapply(dia[,c(2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21)], nor))
+ 
+ ##training dataset extracted
+ dia_train <- dia_nor[ran,]
+ 
+ ##test dataset extracted
+ dia_test <- dia_nor[-ran,]
+##the 2nd column of training dataset because that is what we need to predict about testing dataset
+ ##also convert ordered factor to normal factor
+ dia_target <- as.factor(dia[ran,1])
+ 
+ ##the actual values of 2nd couln of testing dataset to compaire it with values that will be predicted
+ ##also convert ordered factor to normal factor
+ test_target <- as.factor(dia[-ran,1])
+ 
+ ##run knn function
+ library(class)
+ pr <- knn(dia_train,dia_test,cl=dia_target,k=21)
+ 
+ ##create the confucion matrix
+ tb <- table(pr,test_target)
+ 
+ ##check the accuracy
+ accuracy <- function(x){sum(diag(x)/(sum(rowSums(x)))) * 100}
+ accuracy(tb)
+```
+
+
+
+
