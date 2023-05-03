@@ -78,12 +78,12 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 ```{r}
 library(corrplot)
 
-cor_data = cor(diabetes2)
- 
+cor_matrix = cor(diabetes2)
+
 print("Correlation matrix")
 
-print(cor_data)
+print(cor_matrix)
 
-corrplot(cor_data,method = "circle", number.cex = 0.5)
+corrplot(cor_matrix,method = "circle", number.cex = 0.5)
 ```
 
