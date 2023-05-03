@@ -87,3 +87,15 @@ print(cor_matrix)
 corrplot(cor_matrix,method = "circle", number.cex = 0.5)
 ```
 
+```{r}
+
+library(rpart)
+library(rpart.plot)
+
+# decision tree model
+diabetes_tree <- rpart(Diabetes_binary ~ HighBP + HighChol + Smoker + Stroke + PhysActivity + MentHlth + PhysHlth + DiffWalk, data = diabetes2, method = "class")
+
+rpart.plot(diabetes_tree)
+
+```
+
