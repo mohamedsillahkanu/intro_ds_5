@@ -11,7 +11,7 @@
 
 <meta name="author" content="Mohamed Sillah Kanu" />
 
-<meta name="date" content="2023-05-03" />
+<meta name="date" content="2023-05-04" />
 
 <title>Group project</title>
 
@@ -1575,7 +1575,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Group project</h1>
 <h4 class="author">Mohamed Sillah Kanu</h4>
-<h4 class="date">2023-05-03</h4>
+<h4 class="date">2023-05-04</h4>
 
 </div>
 
@@ -1613,7 +1613,7 @@ dia &lt;- read.csv(&quot;C:/Users/YUSUF/Desktop/diabetes.csv&quot;)
  
  ##run knn function
  library(class)
- pr &lt;- knn(dia_train,dia_test,cl=dia_target,k=21)
+ pr &lt;- knn(dia_train,dia_test,cl=dia_target,k=3)
  
  ##create the confucion matrix
  tb &lt;- table(pr,test_target)
@@ -1621,7 +1621,7 @@ dia &lt;- read.csv(&quot;C:/Users/YUSUF/Desktop/diabetes.csv&quot;)
  ##check the accuracy
  accuracy &lt;- function(x){sum(diag(x)/(sum(rowSums(x)))) * 100}
  accuracy(tb)</code></pre>
-<pre><code>## [1] 72.9</code></pre>
+<pre><code>## [1] 69.8</code></pre>
 
 
 
