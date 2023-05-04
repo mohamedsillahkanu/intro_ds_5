@@ -70,7 +70,7 @@ dia <- read.csv("C:/Users/YUSUF/Desktop/diabetes.csv")
  
  ##run knn function
  library(class)
- pr <- knn(dia_train,dia_test,cl=dia_target,k=21)
+ pr <- knn(dia_train,dia_test,cl=dia_target,k=3)
  
  ##create the confucion matrix
  tb <- table(pr,test_target)
